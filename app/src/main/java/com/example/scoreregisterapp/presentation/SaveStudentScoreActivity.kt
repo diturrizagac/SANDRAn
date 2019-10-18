@@ -1,7 +1,8 @@
-package com.example.scoreregisterapp
+package com.example.scoreregisterapp.teacher
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.scoreregisterapp.R
 
 class SaveStudentScoreActivity : AppCompatActivity() {
 

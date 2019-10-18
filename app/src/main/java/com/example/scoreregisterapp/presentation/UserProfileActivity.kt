@@ -1,8 +1,9 @@
-package com.example.scoreregisterapp
+package com.example.scoreregisterapp.profile
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.widget.Toolbar
+import com.example.scoreregisterapp.R
 
 class UserProfileActivity : AppCompatActivity() {
 

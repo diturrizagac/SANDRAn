@@ -1,7 +1,8 @@
-package com.example.scoreregisterapp
+package com.example.scoreregisterapp.authentication
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.scoreregisterapp.R
 
 class AuthenticationActivity : AppCompatActivity() {
 
