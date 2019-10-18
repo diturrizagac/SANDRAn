@@ -12,21 +12,21 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".UserProfileActivity"></activity>
-        <activity android:name=".StudentListActivity"></activity>
-        <activity android:name=".StudentQrActivity"></activity>
-        <activity android:name=".StudentSummaryActivity"></activity>
-        <activity android:name=".StudentCoursesActivity"></activity>
-        <activity android:name=".SelectScoreActivity"></activity>
-        <activity android:name=".SaveStudentScoreActivity"></activity>
-        <activity android:name=".TeacherCoursesActivity"></activity>
-        <activity android:name=".QrResultActivity"></activity>
-        <activity android:name=".QrScanActivity"></activity>
-        <activity android:name=".StudentHomeActivity"></activity>
-        <activity android:name=".TeacherHomeActivity"></activity>
-        <activity android:name=".AuthenticationActivity"></activity>
-        <activity android:name=".SelectRoleActivity"></activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".presentation.UserProfileActivity"></activity>
+        <activity android:name=".presentation.StudentListActivity"></activity>
+        <activity android:name="com.example.scoreregisterapp.presentation.qr.StudentQrActivity"></activity>
+        <activity android:name=".presentation.StudentSummaryActivity"></activity>
+        <activity android:name=".presentation.StudentCoursesActivity"></activity>
+        <activity android:name=".presentation.SelectScoreActivity"></activity>
+        <activity android:name=".presentation.SaveStudentScoreActivity"></activity>
+        <activity android:name=".presentation.TeacherCoursesActivity"></activity>
+        <activity android:name="com.example.scoreregisterapp.presentation.qr.QrResultActivity"></activity>
+        <activity android:name="com.example.scoreregisterapp.presentation.qr.QrScanActivity"></activity>
+        <activity android:name=".presentation.StudentHomeActivity"></activity>
+        <activity android:name=".presentation.TeacherHomeActivity"></activity>
+        <activity android:name=".presentation.AuthenticationActivity"></activity>
+        <activity android:name=".presentation.SelectRoleActivity"></activity>
+        <activity android:name=".presentation.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

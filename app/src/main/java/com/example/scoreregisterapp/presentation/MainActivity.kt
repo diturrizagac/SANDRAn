@@ -1,7 +1,8 @@
-package com.example.scoreregisterapp
+package com.example.scoreregisterapp.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.scoreregisterapp.R
 
 class MainActivity : AppCompatActivity() {
 

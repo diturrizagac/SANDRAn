@@ -1,4 +1,4 @@
-package com.example.scoreregisterapp.authentication
+package com.example.scoreregisterapp.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

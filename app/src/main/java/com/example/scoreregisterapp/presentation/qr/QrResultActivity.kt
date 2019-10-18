@@ -1,4 +1,4 @@
-package com.example.scoreregisterapp.qr
+package com.example.scoreregisterapp.presentation.qr
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

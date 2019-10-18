@@ -5,7 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".StudentCoursesActivity">
+        tools:context=".presentation.StudentCoursesActivity">
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/student_courses_list"
