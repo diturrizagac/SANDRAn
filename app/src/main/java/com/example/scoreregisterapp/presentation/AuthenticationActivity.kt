@@ -18,5 +18,9 @@ class AuthenticationActivity : AppCompatActivity() {
 
     }
 
+    fun setListeners(){
+
+    }
+
 
 }

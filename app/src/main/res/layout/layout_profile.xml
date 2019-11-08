@@ -24,8 +24,9 @@
 
         <RelativeLayout style="@style/profileDetailsLayout">
             <ImageView
+
                     android:id="@+id/nameImageView"
-                    android:src="@drawable/ic_name"
+                    android:src="@drawable/user-80_1"
                     style="@style/profileDetailsImage" />
 
             <TextView
