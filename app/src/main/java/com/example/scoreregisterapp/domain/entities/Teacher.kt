@@ -1,4 +1,8 @@
 package com.example.scoreregisterapp.domain.entities
 
-class Teacher {
+import java.io.Serializable
+
+class Teacher : Serializable, User() {
+
 }
+
