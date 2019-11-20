@@ -62,8 +62,6 @@ class AuthenticationActivity : AppCompatActivity() {
                     } else {
                         TeacherHomeActivity::class.java
                     }
-
-                    val activity =
                     goTo(activity,this@AuthenticationActivity, currentUser.objectId!!)
                 }
 
