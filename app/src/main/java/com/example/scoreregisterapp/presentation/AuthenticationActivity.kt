@@ -12,6 +12,8 @@ import com.backendless.async.callback.AsyncCallback
 import com.backendless.exceptions.BackendlessFault
 import com.diturrizaga.easypay.util.NavigationTo.goTo
 import com.example.scoreregisterapp.R
+import com.example.scoreregisterapp.data.RestService.APP_ID
+import com.example.scoreregisterapp.data.RestService.REST_API_KEY
 import com.example.scoreregisterapp.domain.entities.User
 import com.example.scoreregisterapp.domain.model.Lesson
 import com.example.scoreregisterapp.domain.model.Role
@@ -28,12 +30,13 @@ class AuthenticationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_authentication)
+        Backendless.initApp(this, APP_ID, REST_API_KEY)
         initializeUI()
         setListeners()
     }
 
     private fun initializeUI() {
-        usernameEditText = findViewById(R.id.editTextEmail)
+        usernameEditText = findViewById(R.id.emailEditText)
         passwordEditText = findViewById(R.id.passwordEditText)
         loginButton = findViewById(R.id.loginButton)
     }
@@ -55,7 +58,7 @@ class AuthenticationActivity : AppCompatActivity() {
                 }
 
                 override fun handleResponse(response: BackendlessUser?) {
-                    parseToUser(response!!)
+                    response?.let { parseToUser(it) }
                     Toast.makeText(applicationContext,"${currentUser.firstName} has been logged in successfully", Toast.LENGTH_LONG).show()
                     val activity = if(currentUser.userRole!! == Role.student.name){
                         StudentHomeActivity::class.java
@@ -63,6 +66,7 @@ class AuthenticationActivity : AppCompatActivity() {
                         TeacherHomeActivity::class.java
                     }
                     goTo(activity,this@AuthenticationActivity, currentUser.objectId!!)
+                    loginButton!!.isEnabled = true
                 }
 
             }
@@ -79,7 +83,7 @@ class AuthenticationActivity : AppCompatActivity() {
         currentUser.lastName = backendlessUser.properties!!.getValue("last_name").toString()
         currentUser.mobileNumber = backendlessUser.properties!!.getValue("mobile_number").toString()
         currentUser.studentCycle = backendlessUser.properties!!.getValue("student_cycle").toString()
-        currentUser.lessons = backendlessUser.properties!!.getValue("lessons") as Lesson
+        //currentUser.lessons = backendlessUser.properties!!.getValue("lessons") as Lesson
     }
 
 }
