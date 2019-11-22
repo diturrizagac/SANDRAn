@@ -6,9 +6,16 @@ import android.os.Bundle
 
 
 object NavigationTo {
-   fun goTo(activity: Class<*>, context: Context, id: String) {
+   fun goTo(activity: Class<*>, context: Context, id: String?) {
       val intent = Intent(context,activity)
       intent.putExtra("userId", id)
+      context.startActivity(intent)
+   }
+
+   fun goTo(activity: Class<*>, context: Context, id: String?, role: String?) {
+      val intent = Intent(context,activity)
+      intent.putExtra("userId", id)
+      intent.putExtra("userRole", role)
       context.startActivity(intent)
    }
 

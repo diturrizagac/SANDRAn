@@ -42,30 +42,32 @@ class AuthenticationActivity : AppCompatActivity() {
     }
 
     private fun setListeners(){
-        loginButton!!.setOnClickListener {
-            loginButton!!.isEnabled = false
+        loginButton?.setOnClickListener {
+            loginButton?.isEnabled = false
             setUpAccount()
         }
     }
 
     private fun setUpAccount() {
         Backendless.UserService.login(
-            usernameEditText!!.text.toString(),
-            passwordEditText!!.text.toString(),
+            usernameEditText?.text.toString(),
+            passwordEditText?.text.toString(),
             object : AsyncCallback<BackendlessUser> {
                 override fun handleFault(fault: BackendlessFault?) {
-                    Toast.makeText(applicationContext,fault!!.message, Toast.LENGTH_LONG).show()
+                    Toast.makeText(applicationContext,fault?.message, Toast.LENGTH_LONG).show()
                 }
 
                 override fun handleResponse(response: BackendlessUser?) {
                     response?.let { parseToUser(it) }
                     Toast.makeText(applicationContext,"${currentUser.firstName} has been logged in successfully", Toast.LENGTH_LONG).show()
-                    val activity = if(currentUser.userRole!! == Role.student.name){
+                    /*val activity = if(currentUser.userRole == Role.student.name){
                         StudentHomeActivity::class.java
                     } else {
                         TeacherHomeActivity::class.java
-                    }
-                    goTo(activity,this@AuthenticationActivity, currentUser.objectId!!)
+                    }*/
+                    //goTo(activity,this@AuthenticationActivity, currentUser.objectId, currentUser.userRole)
+                    goTo(HomeActivity::class.java,this@AuthenticationActivity, currentUser.objectId, currentUser.userRole)
+
                     loginButton!!.isEnabled = true
                 }
 
@@ -74,16 +76,16 @@ class AuthenticationActivity : AppCompatActivity() {
     }
 
     private fun parseToUser(backendlessUser : BackendlessUser) {
-        currentUser.userRole = backendlessUser.properties!!.getValue("user_role").toString()
-        currentUser.email = backendlessUser.properties!!.getValue("email").toString()
-        currentUser.objectId = backendlessUser.properties!!.getValue("objectId").toString()
-        currentUser.universityId = backendlessUser.properties!!.getValue("university_id").toString()
-        currentUser.firstName = backendlessUser.properties!!.getValue("first_name").toString()
-        currentUser.midName = backendlessUser.properties!!.getValue("mid_name").toString()
-        currentUser.lastName = backendlessUser.properties!!.getValue("last_name").toString()
-        currentUser.mobileNumber = backendlessUser.properties!!.getValue("mobile_number").toString()
-        currentUser.studentCycle = backendlessUser.properties!!.getValue("student_cycle").toString()
-        //currentUser.lessons = backendlessUser.properties!!.getValue("lessons") as Lesson
+        currentUser.userRole = backendlessUser.properties?.getValue("user_role").toString()
+        currentUser.email = backendlessUser.properties?.getValue("email").toString()
+        currentUser.objectId = backendlessUser.properties?.getValue("objectId").toString()
+        currentUser.universityId = backendlessUser.properties?.getValue("university_id").toString()
+        currentUser.firstName = backendlessUser.properties?.getValue("first_name").toString()
+        currentUser.midName = backendlessUser.properties?.getValue("mid_name").toString()
+        currentUser.lastName = backendlessUser.properties?.getValue("last_name").toString()
+        currentUser.mobileNumber = backendlessUser.properties?.getValue("mobile_number").toString()
+        currentUser.studentCycle = backendlessUser.properties?.getValue("student_cycle").toString()
+        //currentUser.lessons = backendlessUser.properties?.getValue("lessons") as Lesson
     }
 
 }

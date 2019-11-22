@@ -24,7 +24,7 @@ open class User : Serializable {
     open var userRole: String? = null
     @SerializedName("mobile_number")
     @Expose
-    open var mobileNumber: Any? = null
+    open var mobileNumber: String? = null
     @SerializedName("ownerId")
     @Expose
     open var ownerId: String? = null
@@ -33,16 +33,16 @@ open class User : Serializable {
     open var email: String? = null
     @SerializedName("university_id")
     @Expose
-    open var universityId: Any? = null
+    open var universityId: String? = null
     @SerializedName("lastLogin")
     @Expose
-    open var lastLogin: Any? = null
+    open var lastLogin: String? = null
     @SerializedName("userStatus")
     @Expose
     open var userStatus: String? = null
     @SerializedName("created")
     @Expose
-    open var created: Int? = null
+    open var created: Long? = null
     @SerializedName("socialAccount")
     @Expose
     open var socialAccount: String? = null
@@ -51,7 +51,7 @@ open class User : Serializable {
     open var blUserLocale: String? = null
     @SerializedName("updated")
     @Expose
-    open var updated: Int? = null
+    open var updated: Long? = null
     @SerializedName("___class")
     @Expose
     open var _class: String? = null

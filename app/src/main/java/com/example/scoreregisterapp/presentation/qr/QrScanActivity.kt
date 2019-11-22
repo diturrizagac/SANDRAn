@@ -8,6 +8,6 @@ class QrScanActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_scan_qr)
+        setContentView(R.layout.activity_qr_scan)
     }
 }
