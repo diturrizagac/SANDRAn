@@ -20,14 +20,15 @@ import com.diturrizaga.easypay.util.NavigationTo.goTo
 import com.example.scoreregisterapp.R
 import com.example.scoreregisterapp.domain.entities.User
 import com.google.android.material.snackbar.Snackbar
-import com.google.zxing.Result
 import com.google.zxing.BarcodeFormat
+import com.google.zxing.Result
 import kotlinx.android.synthetic.main.activity_qr_scan.*
 import me.dm7.barcodescanner.zxing.ZXingScannerView
 
-class QrScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
 
-    private var qrCodeScanner : ZXingScannerView? = null
+class QrScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
+
+    private var scannerView : ZXingScannerView? = null
     private var barcodeBackImageView : ImageView? = null
     private var flashOnOff : ImageView? = null
 
@@ -43,28 +44,23 @@ class QrScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        requestWindowFeature(Window.FEATURE_NO_TITLE)
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN)
-        setContentView(R.layout.activity_qr_scan)
-        initializeUI()
-        retrieveCurrentAccount()
-        setScannerProperties()
-        barcodeBackImageView!!.setOnClickListener {
-            onBackPressed()
-        }
-
-        flashOnOff!!.setOnClickListener {
-            if (qrCodeScanner!!.flash) {
-                qrCodeScanner!!.flash = false
-                flashOnOff!!.background = ContextCompat.getDrawable(this, R.drawable.flash_off_vector_icon)
-            } else {
-                qrCodeScanner!!.flash = true
-                flashOnOff!!.background = ContextCompat.getDrawable(this, R.drawable.flash_on_vector_icon)
-            }
-        }
+        scannerView = ZXingScannerView(this)
+        setContentView(scannerView)
     }
+
+    override fun onResume() {
+        super.onResume()
+        scannerView?.setResultHandler(this)
+        scannerView?.startCamera()
+    }
+
+
+    override fun onPause() {
+        super.onPause()
+        scannerView?.stopCamera()
+    }
+
+
 
     private fun retrieveCurrentAccount(){
         userId = intent.extras!!.getString("userId")
@@ -73,7 +69,6 @@ class QrScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
     private fun initializeUI() {
         barcodeBackImageView = findViewById(R.id.barcodeBackImageView)
         flashOnOff = findViewById(R.id.flashOnOffImageView)
-        qrCodeScanner = findViewById(R.id.qrCodeScanner)
     }
 
     private fun setScannerProperties() {
@@ -85,19 +80,6 @@ class QrScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
            qrCodeScanner!!.setAspectTolerance(0.5f)
     }
 
-    override fun onResume() {
-        super.onResume()
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA),
-                    MY_CAMERA_REQUEST_CODE
-                )
-                return
-            }
-        }
-        qrCodeScanner!!.startCamera()
-        qrCodeScanner!!.setResultHandler(this)
-    }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
@@ -136,7 +118,7 @@ class QrScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
     private fun resumeCamera() {
         Toast.LENGTH_LONG
         val handler = Handler()
-        handler.postDelayed({ qrCodeScanner!!.resumeCameraPreview(this@QrScanActivity) }, 2000)
+        handler.postDelayed({ qrCodeScanner!!.resumeCameraPreview(this@QrScannerActivity) }, 2000)
     }
 
 }

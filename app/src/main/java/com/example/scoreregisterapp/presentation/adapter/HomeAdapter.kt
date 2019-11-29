@@ -31,7 +31,6 @@ class HomeAdapter(private val context: Context, private val optionList: List<Hom
 
         holder.bind(item)
 
-
         /*if (myPos == position) {
             holder.title.setTextColor(Color.parseColor("#000000"))
             holder.linear.setBackgroundResource(R.drawable.ic_selector_1)

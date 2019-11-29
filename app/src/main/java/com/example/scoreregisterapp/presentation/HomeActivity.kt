@@ -18,6 +18,7 @@ import com.example.scoreregisterapp.domain.model.Home
 import com.example.scoreregisterapp.domain.model.Role
 import com.example.scoreregisterapp.presentation.adapter.HomeAdapter
 import com.example.scoreregisterapp.presentation.qr.QrGenerateActivity
+import com.example.scoreregisterapp.presentation.qr.QrScanActivity
 
 import java.util.ArrayList
 
@@ -47,7 +48,13 @@ class HomeActivity : AppCompatActivity() {
             val viewHolder = view!!.tag as RecyclerView.ViewHolder
             val position = viewHolder.adapterPosition
             itemSelected = itemList!![position]
-            goTo(UserProfileActivity::class.java,this@HomeActivity, userId)
+
+            when(position) {
+                0 -> goTo(UserProfileActivity::class.java,this@HomeActivity, userId)
+                1 -> goTo(QrScanActivity::class.java,this@HomeActivity, userId)
+                2 -> goTo(StudentCoursesActivity::class.java,this@HomeActivity, userId)
+            }
+            //goTo(UserProfileActivity::class.java,this@HomeActivity, userId)
             Log.v(TAG, "tapping any item")
         }
     }
@@ -115,7 +122,7 @@ class HomeActivity : AppCompatActivity() {
     private fun setUpRecyclerView(){
         val layoutManager = GridLayoutManager(this, 2)
         recyclerView!!.layoutManager = layoutManager
-        recyclerView!!.itemAnimator = DefaultItemAnimator()
+        recyclerView!!.itemAnimator = DefaultItemAnimator() as RecyclerView.ItemAnimator?
     }
 
     private fun showOptions() {
