@@ -4,12 +4,12 @@ package com.example.scoreregisterapp.domain.model;
  * Created by World of UI/UX on 01/04/2019.
  */
 
-public class Home {
+public class HomeData {
 
     Integer image;
     String title;
 
-    public Home(Integer image, String title) {
+    public HomeData(Integer image, String title) {
         this.image = image;
         this.title = title;
     }

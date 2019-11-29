@@ -6,8 +6,8 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.widget.TextView
-import android.widget.Toast
-import androidx.core.app.ActivityCompat
+
+
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -15,6 +15,8 @@ import android.os.Handler
 import android.view.Window
 import android.view.WindowManager
 import android.widget.ImageView
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.diturrizaga.easypay.util.NavigationTo.goTo
 import com.example.scoreregisterapp.R
@@ -43,14 +45,16 @@ class QrScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_qr_scan)
         initializeUI()
-        retrieveCurrentAccount()
+        retrieveCurrentUser()
         setScannerProperties()
+
         barcodeBackImageView!!.setOnClickListener {
             onBackPressed()
         }
@@ -58,15 +62,19 @@ class QrScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
         flashOnOff!!.setOnClickListener {
             if (qrCodeScanner!!.flash) {
                 qrCodeScanner!!.flash = false
-                flashOnOff!!.background = ContextCompat.getDrawable(this, R.drawable.flash_off_vector_icon)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    flashOnOff!!.background = ContextCompat.getDrawable(this, R.drawable.flash_off_vector_icon)
+                }
             } else {
                 qrCodeScanner!!.flash = true
-                flashOnOff!!.background = ContextCompat.getDrawable(this, R.drawable.flash_on_vector_icon)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    flashOnOff!!.background = ContextCompat.getDrawable(this, R.drawable.flash_on_vector_icon)
+                }
             }
         }
     }
 
-    private fun retrieveCurrentAccount(){
+    private fun retrieveCurrentUser(){
         userId = intent.extras!!.getString("userId")
     }
 
@@ -115,7 +123,6 @@ class QrScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
             val myView = snackbar.view
             myView.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
             val textView = myView.findViewById<TextView>(com.google.android.material.R.id.snackbar_text)
-            //val textView = view1.findViewById<TextView>(android.support.design.R.id.snackbar_text)
             textView.setTextColor(ContextCompat.getColor(this, R.color.colorPrimary))
             snackbar.show()
         }
@@ -126,9 +133,14 @@ class QrScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
         qrCodeScanner!!.setResultHandler(this)
     }
 
+    override fun onPause() {
+        super.onPause()
+        qrCodeScanner?.stopCamera()
+    }
+
     override fun handleResult(result: Result?) {
         if (result != null) {
-            goTo(QrResultActivity::class.java,this,user?.objectId)
+            goTo(QrResultActivity::class.java,this,result.text)
             resumeCamera()
         }
     }

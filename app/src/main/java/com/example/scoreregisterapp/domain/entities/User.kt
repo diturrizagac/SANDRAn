@@ -68,5 +68,9 @@ open class User : Serializable {
     @Expose
     open var lessons: Lesson? = null
 
+    @SerializedName("enrollment")
+    @Expose
+    open var enrollment: List<Enrollment>? = null
+
 
 }

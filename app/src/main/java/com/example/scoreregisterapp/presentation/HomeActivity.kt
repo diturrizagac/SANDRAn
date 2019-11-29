@@ -5,16 +5,13 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-
 import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.diturrizaga.easypay.util.NavigationTo.goTo
-
 import com.example.scoreregisterapp.R
-import com.example.scoreregisterapp.domain.model.Home
+import com.example.scoreregisterapp.domain.model.HomeData
 import com.example.scoreregisterapp.domain.model.Role
 import com.example.scoreregisterapp.presentation.adapter.HomeAdapter
 import com.example.scoreregisterapp.presentation.qr.QrGenerateActivity
@@ -29,17 +26,9 @@ class HomeActivity : AppCompatActivity() {
     private var userId: String? = null
     private var userRole: String? = null
 
-    private var profileCardView: CardView? = null
-    private var registerCardView: CardView? = null
-    private var coursesCardView: CardView? = null
-
-    private var itemSelected: Home? = null
-    private var items : List<Home>? = null
-
     private var showQrButton: Button? = null
 
-    private var title: TextView? = null
-    private var itemList: ArrayList<Home>? = null
+    private var itemList: ArrayList<HomeData>? = null
     private var recyclerView: RecyclerView? = null
     private var homeAdapter: HomeAdapter? = null
 
@@ -47,12 +36,11 @@ class HomeActivity : AppCompatActivity() {
         override fun onClick(view: View?) {
             val viewHolder = view!!.tag as RecyclerView.ViewHolder
             val position = viewHolder.adapterPosition
-            itemSelected = itemList!![position]
 
             when(position) {
                 0 -> goTo(UserProfileActivity::class.java,this@HomeActivity, userId)
                 1 -> goTo(QrScanActivity::class.java,this@HomeActivity, userId)
-                2 -> goTo(StudentCoursesActivity::class.java,this@HomeActivity, userId)
+                2 -> goTo(UserCoursesActivity::class.java,this@HomeActivity, userId)
             }
             //goTo(UserProfileActivity::class.java,this@HomeActivity, userId)
             Log.v(TAG, "tapping any item")
@@ -113,9 +101,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun initializeUI() {
-
         showQrButton = findViewById(R.id.showQrButton)
-        title = findViewById(R.id.title)
         recyclerView = findViewById(R.id.recyclerView)
     }
 
@@ -126,7 +112,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun showOptions() {
-        var beanClassForRecyclerView: Home?
+        var beanClassForRecyclerView: HomeData?
         itemList = ArrayList()
         titles = if(userRole.equals(Role.student.name)){
             studenttitles
@@ -135,7 +121,8 @@ class HomeActivity : AppCompatActivity() {
         }
 
         for (i in userImages.indices) {
-            beanClassForRecyclerView = Home(userImages[i], titles[i])
+            beanClassForRecyclerView =
+                HomeData(userImages[i], titles[i])
             itemList!!.add(beanClassForRecyclerView)
         }
         homeAdapter = HomeAdapter(this, itemList!!)

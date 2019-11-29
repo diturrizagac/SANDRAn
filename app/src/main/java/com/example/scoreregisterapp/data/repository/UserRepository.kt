@@ -32,14 +32,14 @@ class UserRepository : Repository {
     }
 
 
-    fun getUser(userId: String, callback: OnGetItemCallback<User>) {
+    fun getUser(userId: String?, callback: OnGetItemCallback<User>?) {
         val user = getRestProvider().getUser(APP_ID, REST_API_KEY,userId)
-        Log.i(TAG, "GET---> ${user.request().url()}")
+        Log.i(TAG, "GET---> ${user?.request()?.url()}")
         requestUser(user, callback)
     }
 
-    private fun requestUser(call: Call<User>, callback: OnGetItemCallback<User>) {
-        call.enqueue(
+    private fun requestUser(call: Call<User>?, callback: OnGetItemCallback<User>?) {
+        call?.enqueue(
             object : Callback<User> {
                 override fun onFailure(call: Call<User>, t: Throwable) {
                     Log.v("ERROR $TAG", t.toString())
@@ -49,7 +49,7 @@ class UserRepository : Repository {
                     if (response.isSuccessful) {
                         val userResponse = response.body()
                         if (userResponse != null) {
-                            callback.onSuccess(userResponse)
+                            callback?.onSuccess(userResponse)
                         }
                     }
                 }

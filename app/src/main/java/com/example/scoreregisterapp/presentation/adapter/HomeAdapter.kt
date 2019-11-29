@@ -1,7 +1,6 @@
 package com.example.scoreregisterapp.presentation.adapter
 
 import android.content.Context
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,10 +10,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 import com.example.scoreregisterapp.R
-import com.example.scoreregisterapp.domain.model.Home
+import com.example.scoreregisterapp.domain.model.HomeData
 
 
-class HomeAdapter(private val context: Context, private val optionList: List<Home>) :
+class HomeAdapter(private val context: Context, private val optionList: List<HomeData>) :
     RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
 
     private var myPos = 0
@@ -22,12 +21,12 @@ class HomeAdapter(private val context: Context, private val optionList: List<Hom
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
         val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.raw_home, parent, false)
+            .inflate(R.layout.raw_item_cardview, parent, false)
         return HomeViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
-        val item : Home = optionList[position]
+        val item : HomeData = optionList[position]
 
         holder.bind(item)
 
@@ -56,11 +55,11 @@ class HomeAdapter(private val context: Context, private val optionList: List<Hom
 
     inner class HomeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        private var image: ImageView = view.findViewById(R.id.image) as ImageView
-        private var title: TextView = view.findViewById(R.id.title) as TextView
+        private var image: ImageView = view.findViewById(R.id.item_image) as ImageView
+        private var title: TextView = view.findViewById(R.id.item_title) as TextView
         private var linear: LinearLayout = view.findViewById(R.id.linear) as LinearLayout
 
-        fun bind(item: Home) {
+        fun bind(item: HomeData) {
             image.setImageResource(item.image!!)
             title.text = item.title
         }
