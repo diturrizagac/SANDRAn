@@ -26,7 +26,9 @@
             android:background="@drawable/flash_off_vector_icon"
             android:clickable="true"
             android:contentDescription="@null"
-            android:focusable="true" />
+            android:focusable="true"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true" />
 
     <LinearLayout
             android:layout_width="match_parent"
@@ -52,7 +54,8 @@
                 android:fontFamily="@font/nunito_black"
                 android:text="READER"
                 android:textColor="@color/white"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_marginLeft="10dp" />
     </LinearLayout>
 
 </RelativeLayout>

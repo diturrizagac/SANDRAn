@@ -1,6 +1,5 @@
 package com.example.scoreregisterapp.presentation
 
-import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -15,8 +14,6 @@ import com.example.scoreregisterapp.R
 import com.example.scoreregisterapp.data.RestService.APP_ID
 import com.example.scoreregisterapp.data.RestService.REST_API_KEY
 import com.example.scoreregisterapp.domain.entities.User
-import com.example.scoreregisterapp.domain.model.Lesson
-import com.example.scoreregisterapp.domain.model.Role
 
 class AuthenticationActivity : AppCompatActivity() {
 
@@ -43,7 +40,6 @@ class AuthenticationActivity : AppCompatActivity() {
 
     private fun setListeners(){
         loginButton?.setOnClickListener {
-            loginButton?.isEnabled = false
             setUpAccount()
         }
     }
@@ -66,7 +62,7 @@ class AuthenticationActivity : AppCompatActivity() {
                         TeacherHomeActivity::class.java
                     }*/
                     //goTo(activity,this@AuthenticationActivity, currentUser.objectId, currentUser.userRole)
-                    goTo(HomeActivity::class.java,this@AuthenticationActivity, currentUser.objectId, currentUser.userRole)
+                    goTo(UserHomeActivity::class.java,this@AuthenticationActivity, currentUser.objectId, currentUser.userRole)
 
                     loginButton!!.isEnabled = true
                 }

@@ -3,13 +3,13 @@ package com.example.scoreregisterapp.data.repository
 import android.util.Log
 import com.example.scoreregisterapp.data.RestProvider
 import com.example.scoreregisterapp.data.RestService
+import com.example.scoreregisterapp.data.RestService.APP_ID
+import com.example.scoreregisterapp.data.RestService.REST_API_KEY
 import com.example.scoreregisterapp.data.callback.OnGetItemCallback
 import com.example.scoreregisterapp.domain.entities.Course
-import com.example.scoreregisterapp.domain.entities.User
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.io.IOException
 
 class CourseRepository {
     private var restProvider: RestProvider? = null
@@ -31,7 +31,7 @@ class CourseRepository {
     }
 
     fun getCourse(courseId: String?, size: Int?, callback: OnGetItemCallback<Course>?) {
-        val course = RestService.getRestProvider().getCourse(RestService.APP_ID, RestService.REST_API_KEY,courseId)
+        val course = RestService.getRestProvider().getCourse(APP_ID, REST_API_KEY,courseId)
         Log.i(TAG, "GET---> ${course?.request()?.url()}")
         requestCourse(course, size, callback)
     }

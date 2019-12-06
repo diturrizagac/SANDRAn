@@ -21,19 +21,19 @@
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="User ->"
+                android:text="Title ->"
                 android:textColor="@color/colorAccent"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
         <TextView
-                android:id="@+id/scanned_user_name"
+                android:id="@+id/scanned_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                android:text="Diego Raúl Iturrizaga Casas"
+                android:hint="title"
                 android:layout_marginLeft="10dp" />
 
     </LinearLayout>
@@ -50,19 +50,19 @@
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="User ID ->"
+                android:text="Subtitle ->"
                 android:textColor="@color/colorAccent"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
         <TextView
-                android:id="@+id/scanned_user_university_id"
+                android:id="@+id/scanned_subtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                android:text="11200083"
+                android:hint="subtitle"
                 android:layout_marginLeft="10dp" />
 
     </LinearLayout>
@@ -79,24 +79,53 @@
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Course ->"
+                android:text="Subtitle2 ->"
                 android:textColor="@color/colorAccent"
                 android:textSize="15sp"
                 android:textStyle="bold"/>
 
         <TextView
-                android:id="@+id/scanned_user_course"
+                android:id="@+id/scanned_subtitle_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                android:text="Ingeniería de Negocios"
+                android:hint="subtitle2"
+                android:layout_marginLeft="10dp" />
+
+    </LinearLayout>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Subtitle2 ->"
+                android:textColor="@color/colorAccent"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+
+        <TextView
+                android:id="@+id/scanned_subtitle_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:hint="subtitle2"
                 android:layout_marginLeft="10dp" />
 
     </LinearLayout>
 
     <TextView
+            android:id="@+id/successful_announcement"
             android:layout_marginTop="50dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

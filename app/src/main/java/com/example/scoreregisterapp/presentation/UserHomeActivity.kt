@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
@@ -20,9 +19,9 @@ import com.example.scoreregisterapp.presentation.qr.QrScanActivity
 import java.util.ArrayList
 
 
-class HomeActivity : AppCompatActivity() {
+class UserHomeActivity : AppCompatActivity() {
 
-    private val TAG = "HomeActivity"
+    private val TAG = "UserHomeActivity"
     private var userId: String? = null
     private var userRole: String? = null
 
@@ -38,11 +37,11 @@ class HomeActivity : AppCompatActivity() {
             val position = viewHolder.adapterPosition
 
             when(position) {
-                0 -> goTo(UserProfileActivity::class.java,this@HomeActivity, userId)
-                1 -> goTo(QrScanActivity::class.java,this@HomeActivity, userId)
-                2 -> goTo(UserCoursesActivity::class.java,this@HomeActivity, userId)
+                0 -> goTo(UserProfileActivity::class.java,this@UserHomeActivity, userId)
+                1 -> goTo(QrScanActivity::class.java,this@UserHomeActivity, userId)
+                2 -> goTo(UserCoursesActivity::class.java,this@UserHomeActivity, userId)
             }
-            //goTo(UserProfileActivity::class.java,this@HomeActivity, userId)
+            //goTo(UserProfileActivity::class.java,this@UserHomeActivity, userId)
             Log.v(TAG, "tapping any item")
         }
     }
@@ -92,7 +91,7 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+        setContentView(R.layout.activity_user_home)
         retrieveData()
         initializeUI()
         setUpRecyclerView()

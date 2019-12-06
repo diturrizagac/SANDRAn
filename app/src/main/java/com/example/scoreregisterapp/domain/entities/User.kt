@@ -1,6 +1,5 @@
 package com.example.scoreregisterapp.domain.entities
 
-import com.example.scoreregisterapp.domain.model.Lesson
 import java.io.Serializable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
@@ -66,7 +65,7 @@ open class User : Serializable {
 
     @SerializedName("lessons")
     @Expose
-    open var lessons: Lesson? = null
+    open var lessons: List<Lesson>? = null
 
     @SerializedName("enrollment")
     @Expose

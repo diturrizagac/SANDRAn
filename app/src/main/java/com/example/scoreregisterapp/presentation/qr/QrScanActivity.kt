@@ -52,8 +52,8 @@ class QrScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
             WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_qr_scan)
         initializeUI()
-        retrieveCurrentUser()
         setScannerProperties()
+        retrieveCurrentUser()
 
         barcodeBackImageView!!.setOnClickListener {
             onBackPressed()

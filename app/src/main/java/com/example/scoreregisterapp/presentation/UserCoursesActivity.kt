@@ -38,7 +38,18 @@ class UserCoursesActivity : AppCompatActivity() {
     private var courseRepository = CourseRepository.getInstance()
 
 
-
+    private var images = arrayOf(
+        R.drawable.coffee_cup,
+        R.drawable.doughnut,
+        R.drawable.cake,
+        R.drawable.egg,
+        R.drawable.burgerrrr,
+        R.drawable.fries,
+        R.drawable.pizza,
+        R.drawable.noodles,
+        R.drawable.fish,
+        R.drawable.buffet
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +62,10 @@ class UserCoursesActivity : AppCompatActivity() {
 
     }
 
+    private fun retrieveData() {
+        userId = intent.extras?.getString("userId")
+    }
+
     private fun initializeUI() {
         recyclerView = findViewById(R.id.courses_recycler_view)
     }
@@ -61,14 +76,6 @@ class UserCoursesActivity : AppCompatActivity() {
         recyclerView!!.itemAnimator = DefaultItemAnimator()
     }
 
-    private fun showCourses() {
-
-    }
-
-    private fun retrieveData() {
-        userId = intent.extras?.getString("userId")
-    }
-
     private fun getUserEnrollment() {
         enrollmentRepository.getUserEnrollment(
             userId,
@@ -76,7 +83,6 @@ class UserCoursesActivity : AppCompatActivity() {
                 override fun onSuccess(items: List<Enrollment>?) {
                     idList = items
                     getAllCourses(idList)
-
                     //idCoursesList = getIdFromCourses(coursesList)
                 }
 
@@ -87,6 +93,16 @@ class UserCoursesActivity : AppCompatActivity() {
             }
         )
     }
+
+    fun getAllCourses(items : List<Enrollment>?) {
+        val item = items!!.iterator()
+        while(item.hasNext()){
+            val course = item.next()
+            getCourse(course.id_db!!)
+        }
+
+    }
+
     private fun getCourse(courseId: String) {
         courseRepository.getCourse(
             courseId,
@@ -95,6 +111,10 @@ class UserCoursesActivity : AppCompatActivity() {
                 override fun onSuccess(item: Course) {
                     currentCourse = item
                     coursesList.add(currentCourse!!)
+                    if (idList?.size == coursesList.size) {
+                        courseAdapter = CoursesAdapter(this@UserCoursesActivity,parseCourseToCourseData(coursesList))
+                        setAdapter(courseAdapter!!)
+                    }
                 }
 
                 override fun onError() {
@@ -105,37 +125,6 @@ class UserCoursesActivity : AppCompatActivity() {
         )
     }
 
-    fun getUserCourses(list: List<String>) {
-
-    }
-
-
-    fun setAdapter(adapter : CoursesAdapter) {
-        recyclerView?.adapter = adapter
-    }
-
-    fun getIdFromCourses(items : List<Enrollment>?) : List<String>? {
-
-        val filteredList = ArrayList<String>()
-        val item = items!!.iterator()
-        while(item.hasNext()){
-            val course = item.next()
-            getCourse(course.id_db!!)
-            //ilteredList.add(course.id_course!!)
-
-        }
-        return filteredList
-    }
-
-    fun getAllCourses(items : List<Enrollment>?) {
-        val item = items!!.iterator()
-        while(item.hasNext()){
-            val course = item.next()
-            getCourse(course.id_db!!)
-        }
-    }
-
-
     private fun parseCourseToCourseData(courses: ArrayList<Course>) : ArrayList<CourseData> {
         val filteredList = ArrayList<CourseData>()
         val item = courses.iterator()
@@ -143,11 +132,14 @@ class UserCoursesActivity : AppCompatActivity() {
             val course = item.next()
             val courseData = CourseData()
             courseData.title = course.name
+            courseData.image = images[0]
             filteredList.add(courseData)
         }
-        courseAdapter = CoursesAdapter(this@UserCoursesActivity,parseCourseToCourseData(coursesList))
-        setAdapter(courseAdapter!!)
         return filteredList
+    }
+
+    private fun setAdapter(adapter : CoursesAdapter) {
+        recyclerView?.adapter = adapter
     }
 
 }

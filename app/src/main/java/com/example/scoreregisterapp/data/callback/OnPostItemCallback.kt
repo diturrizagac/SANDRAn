@@ -1,6 +1,6 @@
 package com.example.scoreregisterapp.data.callback
 
-interface OnGetItemCallback<T> {
+interface OnPostItemCallback<T> {
     fun onSuccess(item: T?)
     fun onError()
 }

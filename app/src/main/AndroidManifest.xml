@@ -13,9 +13,11 @@
 
     <application
             android:allowBackup="true"
+            android:hardwareAccelerated="false"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
+            android:largeHeap="true"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <activity android:name=".presentation.UserCoursesActivity"></activity>
@@ -23,15 +25,11 @@
         <activity android:name=".presentation.StudentListActivity" />
         <activity android:name=".presentation.qr.QrGenerateActivity" />
         <activity android:name=".presentation.StudentSummaryActivity" />
-        <activity android:name=".presentation.StudentCoursesActivity" />
         <activity android:name=".presentation.SelectScoreActivity" />
         <activity android:name=".presentation.SaveStudentScoreActivity" />
-        <activity android:name=".presentation.TeacherCoursesActivity" />
         <activity android:name=".presentation.qr.QrResultActivity" />
         <activity android:name=".presentation.qr.QrScanActivity" />
-        <activity android:name=".presentation.StudentHomeActivity" />
-        <activity android:name=".presentation.TeacherHomeActivity" />
-        <activity android:name=".presentation.HomeActivity"></activity>
+        <activity android:name=".presentation.UserHomeActivity"></activity>
         <activity android:name=".presentation.AuthenticationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,9 +37,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.SelectRoleActivity" />
         <activity android:name=".presentation.custom.DashboardActivity"></activity>
-        <activity android:name=".presentation.MainActivity"></activity>
     </application>
 
 </manifest>
