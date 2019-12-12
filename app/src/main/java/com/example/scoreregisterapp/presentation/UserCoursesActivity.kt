@@ -108,7 +108,7 @@ class UserCoursesActivity : AppCompatActivity() {
             courseId,
             idCoursesList?.size,
             object : OnGetItemCallback<Course> {
-                override fun onSuccess(item: Course) {
+                override fun onSuccess(item: Course?) {
                     currentCourse = item
                     coursesList.add(currentCourse!!)
                     if (idList?.size == coursesList.size) {

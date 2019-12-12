@@ -84,7 +84,7 @@ class QrGenerateActivity : AppCompatActivity() {
         userRepository.getUser(
             userId,
             object : OnGetItemCallback<User> {
-                override fun onSuccess(item: User) {
+                override fun onSuccess(item: User?) {
                     currentUser = item
                     showQr()
                 }

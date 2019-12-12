@@ -3,6 +3,7 @@ package com.example.scoreregisterapp.data
 
 import com.example.scoreregisterapp.domain.entities.Attendance
 import com.example.scoreregisterapp.domain.entities.Course
+import com.example.scoreregisterapp.domain.entities.Lesson
 import com.example.scoreregisterapp.domain.entities.User
 import retrofit2.Call
 import retrofit2.http.*
@@ -39,6 +40,13 @@ interface RestProvider {
         @Body attendance: Attendance?
     ): Call<Attendance>
 
+
+    @POST("{bl_key}/{api_key}/data/Lesson")
+    fun createLesson(
+        @Path("bl_key") bl_key : String?,
+        @Path("api_key") api_key : String?,
+        @Body lesson: Lesson?
+    ): Call<Lesson>
 
 
 

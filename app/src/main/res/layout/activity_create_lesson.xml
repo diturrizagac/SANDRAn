@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        tools:context=".presentation.CreateLessonActivity">
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/courses_spinner_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp">
+        <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Choose a Course"/>
+        <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/courses_spinner"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/lesson_title_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp">
+
+        <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/lesson_title_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="10dp"
+                android:hint="Insert the subject"
+                android:paddingEnd="8dp"
+                android:paddingStart="8dp"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+            android:id="@+id/create_lesson_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="create QR to scan"/>
+
+</LinearLayout>

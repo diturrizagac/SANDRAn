@@ -8,7 +8,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.scoreregisterapp.R
-import com.example.scoreregisterapp.domain.entities.Course
 import com.example.scoreregisterapp.domain.model.CourseData
 
 class CoursesAdapter(private val context: Context, private val optionList: List<CourseData>) :

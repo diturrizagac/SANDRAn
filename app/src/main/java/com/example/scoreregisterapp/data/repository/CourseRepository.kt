@@ -50,20 +50,6 @@ class CourseRepository {
                             callback?.onSuccess(courseResponse)
                         }
                     }
-
-                    /*try {
-                        if (response.isSuccessful) {
-                            i = i?.minus(1)
-                            if (i!! > 0){
-                                val courseResponse = response.body()
-                                if (courseResponse != null) {
-                                    callback?.onSuccess(courseResponse)
-                                }
-                            }
-                        }
-                    } catch (e: IOException) {
-                        e.printStackTrace()
-                    }*/
                 }
 
             }

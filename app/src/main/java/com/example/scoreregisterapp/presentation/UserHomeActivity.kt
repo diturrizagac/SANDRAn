@@ -36,31 +36,43 @@ class UserHomeActivity : AppCompatActivity() {
             val viewHolder = view!!.tag as RecyclerView.ViewHolder
             val position = viewHolder.adapterPosition
 
-            when(position) {
-                0 -> goTo(UserProfileActivity::class.java,this@UserHomeActivity, userId)
-                1 -> goTo(QrScanActivity::class.java,this@UserHomeActivity, userId)
-                2 -> goTo(UserCoursesActivity::class.java,this@UserHomeActivity, userId)
+            when (position) {
+                0 -> goTo(UserProfileActivity::class.java, this@UserHomeActivity, userId)
+                1 -> goTo(QrScanActivity::class.java, this@UserHomeActivity, userId)
+                2 -> goTo(UserCoursesActivity::class.java, this@UserHomeActivity, userId)
+                3 -> goTo(getActivityByRole(), this@UserHomeActivity, userId)
             }
             //goTo(UserProfileActivity::class.java,this@UserHomeActivity, userId)
-            Log.v(TAG, "tapping any item")
+            Log.v(TAG, "tapping any item" )
+        }
+    }
+
+    private fun getActivityByRole(): Class<*> {
+        return if (userRole.equals(Role.teacher.name)) {
+            CreateLessonActivity::class.java
+        } else {
+            StudentSummaryActivity::class.java
         }
     }
 
     private val userImages = arrayOf(
         R.drawable.coffee_cup,
         R.drawable.doughnut,
-        R.drawable.cake
+        R.drawable.cake,
+        R.drawable.buffet
     )
 
     private val teachertitles = arrayOf(
         "Profile",
         "Register Grade",
-        "Current Courses"
+        "Current Courses",
+        "Create a Lesson"
     )
     private val studenttitles = arrayOf(
         "Profile",
         "Register Attendance",
-        "Current Courses"
+        "Current Courses",
+        "My Grades"
     )
 
 
@@ -104,7 +116,7 @@ class UserHomeActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.recyclerView)
     }
 
-    private fun setUpRecyclerView(){
+    private fun setUpRecyclerView() {
         val layoutManager = GridLayoutManager(this, 2)
         recyclerView!!.layoutManager = layoutManager
         recyclerView!!.itemAnimator = DefaultItemAnimator() as RecyclerView.ItemAnimator?
@@ -113,7 +125,7 @@ class UserHomeActivity : AppCompatActivity() {
     private fun showOptions() {
         var beanClassForRecyclerView: HomeData?
         itemList = ArrayList()
-        titles = if(userRole.equals(Role.student.name)){
+        titles = if (userRole.equals(Role.student.name)) {
             studenttitles
         } else {
             teachertitles
@@ -136,7 +148,7 @@ class UserHomeActivity : AppCompatActivity() {
     private fun setListener() {
         homeAdapter!!.setOnItemClickListener(adapterListener)
         showQrButton!!.setOnClickListener {
-            goTo(QrGenerateActivity::class.java,this, userId)
+            goTo(QrGenerateActivity::class.java, this, userId)
         }
     }
 
