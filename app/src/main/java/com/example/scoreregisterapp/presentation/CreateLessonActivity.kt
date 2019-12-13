@@ -12,6 +12,9 @@ import com.example.scoreregisterapp.domain.entities.Lesson
 
 class CreateLessonActivity : AppCompatActivity() {
 
+    private val TAG = "CreateLessonActivity"
+    private val CLASS = "lesson"
+
     val lessonRepository = LessonRepository.getInstance()
 
     var coursesFromSpinner: AppCompatSpinner? = null
@@ -20,10 +23,12 @@ class CreateLessonActivity : AppCompatActivity() {
 
     var currentLesson: Lesson? = null
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_lesson)
         initializeUI()
+        retrieveData()
     }
 
     fun initializeUI() {
@@ -61,7 +66,10 @@ class CreateLessonActivity : AppCompatActivity() {
 
 
     private fun populateCurrentLesson() {
-
+        currentLesson = Lesson()
+        currentLesson?._class = CLASS
+        currentLesson?.id_course = ""
+        currentLesson?.id_student
     }
 
 }

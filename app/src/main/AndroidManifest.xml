@@ -19,7 +19,8 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".presentation.CreateLessonActivity"></activity>
+        <activity android:name=".presentation.GradesListActivity"></activity>
+        <activity android:name=".presentation.CreateLessonActivity" />
         <activity android:name=".presentation.UserCoursesActivity" />
         <activity android:name=".presentation.UserProfileActivity" />
         <activity android:name=".presentation.StudentListActivity" />

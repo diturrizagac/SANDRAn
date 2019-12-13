@@ -23,6 +23,7 @@ import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel
 class QrGenerateActivity : AppCompatActivity() {
 
     private val TAG = "QrGenerateActivity"
+
     private var userId: String? = null
     private var qrCodeImageView: ImageView? = null
     private var userRepository = UserRepository.getInstance()
@@ -34,12 +35,12 @@ class QrGenerateActivity : AppCompatActivity() {
         setContentView(R.layout.activity_qr_generate)
         retrieveData()
         initializeUI()
-        getUser()
-
+        //getUser()
+        showQr()
     }
 
     private fun retrieveData() {
-        userId = intent.extras?.getString("userId")
+        currentUser = intent.extras?.getSerializable("data") as User
     }
 
     private fun initializeUI() {

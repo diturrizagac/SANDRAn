@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:cardview="http://schemas.android.com/apk/res-auto"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/item_account"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        cardview:cardCornerRadius="13dp">
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="10"
+            android:orientation="horizontal">
+        <RelativeLayout
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="9">
+            <TextView
+                    android:id="@+id/item_list_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/nunito_black"
+                    android:layout_marginStart="30dp"
+                    android:text="Title"
+                    />
+            <TextView
+                    android:id="@+id/item_list_subtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/item_list_title"
+                    android:layout_alignLeft="@+id/item_list_title"
+                    android:layout_alignStart="@+id/item_list_title"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/nunito_extrabold"
+                    android:text="Subtitle"
+                    />
+            <TextView
+                    android:id="@+id/item_list_subtitle_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/item_list_subtitle"
+                    android:layout_alignLeft="@+id/item_list_subtitle"
+                    android:layout_alignStart="@+id/item_list_subtitle"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/nunito_extrabold"
+                    android:text="Subtitle2"
+                    />
+            <TextView
+                    android:id="@+id/item_list_subtitle_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/item_list_subtitle_2"
+                    android:layout_alignLeft="@+id/item_list_subtitle_2"
+                    android:layout_alignStart="@+id/item_list_subtitle_2"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/nunito_extrabold"
+                    android:text="Subtitle3"
+                    />
+            <TextView
+                    android:id="@+id/item_list_subtitle_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/item_list_subtitle_3"
+                    android:layout_alignLeft="@+id/item_list_subtitle_3"
+                    android:layout_alignStart="@+id/item_list_subtitle_3"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/nunito_extrabold"
+                    android:text="Subtitle3"
+                    />
+
+
+        </RelativeLayout>
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:layout_weight="1">
+
+            <ImageView
+                    android:layout_gravity="center"
+                    android:id="@+id/item_arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</com.google.android.material.card.MaterialCardView>

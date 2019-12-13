@@ -10,9 +10,13 @@ class Enrollment : Serializable {
     @Expose
     var id_course: String? = null
 
-    @SerializedName("id_db")
+    @SerializedName("id_course_db")
     @Expose
-    var id_db: String? = null
+    var id_course_db: String? = null
+
+    @SerializedName("id_user")
+    @Expose
+    var id_user: String? = null
 
     @SerializedName("objectId")
     @Expose

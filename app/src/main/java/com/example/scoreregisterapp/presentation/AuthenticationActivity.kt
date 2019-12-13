@@ -62,7 +62,7 @@ class AuthenticationActivity : AppCompatActivity() {
                         TeacherHomeActivity::class.java
                     }*/
                     //goTo(activity,this@AuthenticationActivity, currentUser.objectId, currentUser.userRole)
-                    goTo(UserHomeActivity::class.java,this@AuthenticationActivity, currentUser.objectId, currentUser.userRole)
+                    goTo(UserHomeActivity::class.java,this@AuthenticationActivity, currentUser)
 
                     loginButton!!.isEnabled = true
                 }

@@ -33,6 +33,15 @@ interface RestProvider {
         @Path("objectId") objectId: String?
     ): Call<Course>?
 
+    @GET("{bl_key}/{api_key}/data/Users/{objectId")
+    fun getUserGrades(
+        @Path("bl_key") bl_key : String?,
+        @Path("api_key") api_key : String?,
+        @Path("objectId") objectId: String?,
+        @Query("loadRelations") loadRelations: String
+    ): Call<User>
+
+
     @POST("{bl_key}/{api_key}/data/Attendance")
     fun createAttendance(
         @Path("bl_key") bl_key : String?,

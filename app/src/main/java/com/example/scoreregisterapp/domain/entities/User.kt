@@ -63,9 +63,9 @@ open class User : Serializable {
     @Expose
     open var teacherRate: String? = null
 
-    @SerializedName("lessons")
+    @SerializedName("grades")
     @Expose
-    open var lessons: List<Lesson>? = null
+    open var grades: List<Grades>? = null
 
     @SerializedName("enrollment")
     @Expose

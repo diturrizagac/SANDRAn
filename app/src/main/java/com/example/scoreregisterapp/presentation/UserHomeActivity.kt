@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.diturrizaga.easypay.util.NavigationTo.goTo
 import com.example.scoreregisterapp.R
+import com.example.scoreregisterapp.domain.entities.User
 import com.example.scoreregisterapp.domain.model.HomeData
 import com.example.scoreregisterapp.domain.model.Role
 import com.example.scoreregisterapp.presentation.adapter.HomeAdapter
@@ -22,7 +23,7 @@ import java.util.ArrayList
 class UserHomeActivity : AppCompatActivity() {
 
     private val TAG = "UserHomeActivity"
-    private var userId: String? = null
+    private var currentUser: User? = null
     private var userRole: String? = null
 
     private var showQrButton: Button? = null
@@ -37,12 +38,11 @@ class UserHomeActivity : AppCompatActivity() {
             val position = viewHolder.adapterPosition
 
             when (position) {
-                0 -> goTo(UserProfileActivity::class.java, this@UserHomeActivity, userId)
-                1 -> goTo(QrScanActivity::class.java, this@UserHomeActivity, userId)
-                2 -> goTo(UserCoursesActivity::class.java, this@UserHomeActivity, userId)
-                3 -> goTo(getActivityByRole(), this@UserHomeActivity, userId)
+                0 -> goTo(UserProfileActivity::class.java, this@UserHomeActivity, currentUser)
+                1 -> goTo(QrScanActivity::class.java, this@UserHomeActivity, currentUser)
+                2 -> goTo(UserCoursesActivity::class.java, this@UserHomeActivity, currentUser)
+                3 -> goTo(getActivityByRole(), this@UserHomeActivity, currentUser)
             }
-            //goTo(UserProfileActivity::class.java,this@UserHomeActivity, userId)
             Log.v(TAG, "tapping any item" )
         }
     }
@@ -141,14 +141,14 @@ class UserHomeActivity : AppCompatActivity() {
     }
 
     private fun retrieveData() {
-        userId = intent.extras?.getString("userId")
-        userRole = intent.extras?.getString("userRole")
+        currentUser = intent.extras?.getSerializable("data") as User
+        userRole = currentUser?.userRole
     }
 
     private fun setListener() {
         homeAdapter!!.setOnItemClickListener(adapterListener)
         showQrButton!!.setOnClickListener {
-            goTo(QrGenerateActivity::class.java, this, userId)
+            goTo(QrGenerateActivity::class.java, this, currentUser)
         }
     }
 
