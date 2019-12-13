@@ -63,7 +63,7 @@ class UserRepository : Repository {
 
     fun getUserGrades(userId: String?, callback: OnGetItemsCallback<Grades>?) {
         val grades = getRestProvider().getUserGrades(APP_ID, REST_API_KEY, userId, "grades")
-        Log.i(TAG, "GET---> ${grades?.request()?.url()}")
+        Log.i(TAG, "GET---> ${grades.request().url()}")
         requestUserGrades(grades, callback)
     }
 
@@ -80,7 +80,11 @@ class UserRepository : Repository {
                         val userResponse = response.body()
                         if (userResponse != null) {
                             callback?.onSuccess(userResponse.grades!!)
+                        } else {
+                            callback?.onError()
                         }
+                    } else {
+                        callback?.onError()
                     }
                 }
 

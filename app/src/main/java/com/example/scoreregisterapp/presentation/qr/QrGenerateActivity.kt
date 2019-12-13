@@ -12,8 +12,15 @@ import android.widget.Toast
 import com.example.scoreregisterapp.R
 import com.example.scoreregisterapp.data.callback.OnGetItemCallback
 import com.example.scoreregisterapp.data.repository.UserRepository
+import com.example.scoreregisterapp.domain.entities.Course
+import com.example.scoreregisterapp.domain.entities.Lesson
 import com.example.scoreregisterapp.domain.entities.User
+import com.example.scoreregisterapp.domain.model.LessonData
+import com.example.scoreregisterapp.domain.model.QrData
+import com.example.scoreregisterapp.domain.model.Role
 import com.example.scoreregisterapp.domain.model.UserData
+import com.example.scoreregisterapp.presentation.CreateLessonActivity
+import com.example.scoreregisterapp.presentation.GradesListActivity
 import com.example.scoreregisterapp.presentation.qr.qrUtil.EncryptionHelper
 import com.example.scoreregisterapp.presentation.qr.qrUtil.QRCodeHelper
 import com.google.gson.Gson
@@ -24,10 +31,24 @@ class QrGenerateActivity : AppCompatActivity() {
 
     private val TAG = "QrGenerateActivity"
 
-    private var userId: String? = null
     private var qrCodeImageView: ImageView? = null
     private var userRepository = UserRepository.getInstance()
-    private var currentUser: User? = null
+
+
+    private var currentLesson: Lesson? = null
+    private var currentCourse: Course? = null
+
+    private var currentStudentId: String? = null
+    private var currentUserId: String? = null
+
+    private var qrData: QrData? = null
+
+    private var currentStudent: User? = null
+    private var currentTeacherId: String? = null
+    private var currentLessonId: String? = null
+    private var currentCourseId: String? = null
+
+    private var lessonData: LessonData? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,12 +56,29 @@ class QrGenerateActivity : AppCompatActivity() {
         setContentView(R.layout.activity_qr_generate)
         retrieveData()
         initializeUI()
-        //getUser()
         showQr()
     }
 
     private fun retrieveData() {
-        currentUser = intent.extras?.getSerializable("data") as User
+        val data = intent.extras?.getSerializable("data")
+        if (data is User) {
+            currentStudent = data
+            currentStudentId = currentStudent?.objectId
+        } else {
+            lessonData = data as LessonData
+            currentTeacherId = lessonData?.id_teacher
+            currentLessonId = lessonData?.id_lesson
+            currentCourseId = lessonData?.id_course
+        }
+        setQrData()
+    }
+
+    private fun setQrData() {
+        qrData = QrData()
+        qrData?.id_course = currentCourseId
+        qrData?.id_lesson = currentLessonId
+        qrData?.id_teacher = currentTeacherId
+        qrData?.id_student = currentStudentId
     }
 
     private fun initializeUI() {
@@ -49,8 +87,14 @@ class QrGenerateActivity : AppCompatActivity() {
 
     private fun showQr() {
         hideKeyboard()
-        val user = UserData(currentUser?.objectId!!, currentUser?.universityId!!)
-        val serializeString = Gson().toJson(user)
+
+        /*qrData = if (currentStudent?.userRole.equals(Role.student.name)) {
+            UserData(currentStudent?.objectId!!, currentStudent?.universityId!!)
+        } else {
+            lessonData
+        }*/
+
+        val serializeString = Gson().toJson(qrData)
         val encryptedString =
             EncryptionHelper.getInstance().encryptionString(serializeString).encryptMsg()
         setImageBitmap(encryptedString)
@@ -78,25 +122,6 @@ class QrGenerateActivity : AppCompatActivity() {
             }
             imm.hideSoftInputFromWindow(view.windowToken, 0)
         }
-    }
-
-
-    private fun getUser() {
-        userRepository.getUser(
-            userId,
-            object : OnGetItemCallback<User> {
-                override fun onSuccess(item: User?) {
-                    currentUser = item
-                    showQr()
-                }
-
-                override fun onError() {
-                    Log.e(TAG, "no trajo el item de internet")
-                }
-
-            }
-        )
-
     }
 
 }

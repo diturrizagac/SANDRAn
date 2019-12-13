@@ -61,7 +61,6 @@ class UserCoursesActivity : AppCompatActivity() {
         initializeUI()
         setUpRecyclerView()
         getUserEnrollment()
-        //setData()
 
     }
 

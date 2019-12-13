@@ -51,7 +51,7 @@ class UserHomeActivity : AppCompatActivity() {
         return if (userRole.equals(Role.teacher.name)) {
             CreateLessonActivity::class.java
         } else {
-            StudentSummaryActivity::class.java
+            GradesListActivity::class.java
         }
     }
 

@@ -6,13 +6,25 @@ import com.google.gson.annotations.SerializedName
 class Grades {
 
 
-    @SerializedName("check_in")
+    @SerializedName("id_course")
     @Expose
-    var check_in: String? = null
+    var id_course: String? = null
 
-    @SerializedName("id_student")
+    @SerializedName("partial_exam")
     @Expose
-    var id_student: String? = null
+    var partial_exam: Double? = null
+
+    @SerializedName("auxiliar_exam")
+    @Expose
+    var auxiliar_exam: Double? = null
+
+    @SerializedName("final_grade")
+    @Expose
+    var final_grade: Double? = null
+
+    @SerializedName("final_exam")
+    @Expose
+    var final_exam: Double? = null
 
     @SerializedName("objectId")
     @Expose

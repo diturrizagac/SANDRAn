@@ -10,6 +10,8 @@ import androidx.core.view.isVisible
 import com.backendless.Backendless
 import com.backendless.async.callback.AsyncCallback
 import com.backendless.exceptions.BackendlessFault
+import com.diturrizaga.easypay.util.NavigationTo
+import com.diturrizaga.easypay.util.NavigationTo.goTo
 import com.example.scoreregisterapp.R
 import com.example.scoreregisterapp.data.callback.OnGetItemCallback
 import com.example.scoreregisterapp.data.callback.OnPostItemCallback
@@ -17,6 +19,8 @@ import com.example.scoreregisterapp.data.repository.AttendanceRepository
 import com.example.scoreregisterapp.data.repository.UserRepository
 import com.example.scoreregisterapp.domain.entities.Attendance
 import com.example.scoreregisterapp.domain.entities.User
+import com.example.scoreregisterapp.domain.model.QrData
+import com.example.scoreregisterapp.domain.model.Role
 import com.example.scoreregisterapp.domain.model.UserData
 import com.example.scoreregisterapp.presentation.qr.qrUtil.EncryptionHelper
 import com.google.gson.Gson
@@ -42,11 +46,13 @@ class QrResultActivity : AppCompatActivity() {
     private var currentAttendanceId: String? = null
 
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_qr_result)
         initializeUI()
-        retrieveData()
+        retrieveDataFromQR()
         setAttendanceValues()
     }
 
@@ -62,11 +68,15 @@ class QrResultActivity : AppCompatActivity() {
      * RETRIEVE SCANNED DATA FROM CAMERA
      */
 
-    private fun retrieveData() {
+    private fun retrieveDataFromQR() {
         valueScanned = intent.extras!!.getString("userId")
         val decryptedString = EncryptionHelper.getInstance().getDecryptionString(valueScanned)
-        val userData = Gson().fromJson(decryptedString, UserData::class.java)
-        userId = userData.objectId
+        val qrData = Gson().fromJson(decryptedString, QrData::class.java)
+        userId = intent.extras!!.getString("role")
+        if (userId == "" || userId == null) {
+            userId = qrData.id_teacher
+        }
+
         getUser()
     }
 

@@ -39,14 +39,14 @@ class GradesAdapter(private val context: Context, private val gradesList: List<G
         private var finalGrade: TextView = view.findViewById(R.id.item_list_subtitle)
         private var partialExam: TextView = view.findViewById(R.id.item_list_subtitle_2)
         private var finalExam: TextView = view.findViewById(R.id.item_list_subtitle_3)
-        private var auxiliarlExam: TextView = view.findViewById(R.id.item_list_subtitle_4)
+        private var auxiliarExam: TextView = view.findViewById(R.id.item_list_subtitle_4)
 
         fun bind(item: GradeData) {
             courseNameTv.text = item.course_name
-            finalGrade.text = item.final_grade
-            partialExam.text = item.partial_exam
-            finalExam.text = item.final_exam
-            auxiliarlExam.text = item.auxiliar_exam
+            finalGrade.text = item.final_grade.toString()
+            partialExam.text = item.partial_exam.toString()
+            finalExam.text = item.final_exam.toString()
+            auxiliarExam.text = item.auxiliar_exam.toString()
         }
 
         init {

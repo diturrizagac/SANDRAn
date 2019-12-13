@@ -21,6 +21,8 @@ import androidx.core.content.ContextCompat
 import com.diturrizaga.easypay.util.NavigationTo.goTo
 import com.example.scoreregisterapp.R
 import com.example.scoreregisterapp.domain.entities.User
+import com.example.scoreregisterapp.domain.model.LessonData
+import com.example.scoreregisterapp.domain.model.Role
 import com.google.android.material.snackbar.Snackbar
 import com.google.zxing.Result
 import com.google.zxing.BarcodeFormat
@@ -33,15 +35,19 @@ class QrScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
     private var barcodeBackImageView : ImageView? = null
     private var flashOnOff : ImageView? = null
 
-    private var user : User? = null
+    private var currentUser: User? = null
     private var userId : String? = null
+
+    private var currentUserId: String? = null
+    private var currentLessonId: String? = null
+    private var currentCourseId: String? = null
+
+    private var lessonData: LessonData? = null
 
     companion object {
         private const val HUAWEI = "huawei"
         private const val MY_CAMERA_REQUEST_CODE = 6515
-
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,9 +57,10 @@ class QrScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_qr_scan)
+        retrieveData()
         initializeUI()
         setScannerProperties()
-        retrieveCurrentUser()
+
 
         barcodeBackImageView!!.setOnClickListener {
             onBackPressed()
@@ -74,8 +81,9 @@ class QrScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
         }
     }
 
-    private fun retrieveCurrentUser(){
-        userId = intent.extras!!.getString("userId")
+    private fun retrieveData() {
+        currentUser = intent.extras?.getSerializable("data") as User
+        userId = currentUser?.objectId
     }
 
     private fun initializeUI() {
@@ -140,7 +148,11 @@ class QrScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
 
     override fun handleResult(result: Result?) {
         if (result != null) {
-            goTo(QrResultActivity::class.java,this,result.text)
+            if (currentUser?.userRole.equals(Role.student.name)) {
+                goTo(QrResultActivity::class.java,this,result.text, userId)
+            } else {
+                goTo(QrResultActivity::class.java,this,result.text)
+            }
             resumeCamera()
         }
     }
