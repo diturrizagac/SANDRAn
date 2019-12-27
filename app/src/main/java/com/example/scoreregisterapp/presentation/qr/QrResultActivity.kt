@@ -3,16 +3,14 @@ package com.example.scoreregisterapp.presentation.qr
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.view.isVisible
 import com.backendless.Backendless
 import com.backendless.async.callback.AsyncCallback
 import com.backendless.exceptions.BackendlessFault
-import com.diturrizaga.easypay.util.NavigationTo
-import com.diturrizaga.easypay.util.NavigationTo.goTo
 import com.example.scoreregisterapp.R
+import com.example.scoreregisterapp.data.RestService.getRestProvider
 import com.example.scoreregisterapp.data.callback.OnGetItemCallback
 import com.example.scoreregisterapp.data.callback.OnPostItemCallback
 import com.example.scoreregisterapp.data.repository.AttendanceRepository
@@ -20,8 +18,6 @@ import com.example.scoreregisterapp.data.repository.UserRepository
 import com.example.scoreregisterapp.domain.entities.Attendance
 import com.example.scoreregisterapp.domain.entities.User
 import com.example.scoreregisterapp.domain.model.QrData
-import com.example.scoreregisterapp.domain.model.Role
-import com.example.scoreregisterapp.domain.model.UserData
 import com.example.scoreregisterapp.presentation.qr.qrUtil.EncryptionHelper
 import com.google.gson.Gson
 
@@ -38,7 +34,7 @@ class QrResultActivity : AppCompatActivity() {
 
     private var currentUser: User? = null
     private var userId: String? = null
-    private var userRepository = UserRepository.getInstance()
+    private var userRepository = UserRepository(getRestProvider()).getInstance()
     private var valueScanned: String? = null
 
     private val attendanceRepository = AttendanceRepository.getInstance()

@@ -10,6 +10,8 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.Toast
 import com.example.scoreregisterapp.R
+import com.example.scoreregisterapp.data.RestService
+import com.example.scoreregisterapp.data.RestService.getRestProvider
 import com.example.scoreregisterapp.data.callback.OnGetItemCallback
 import com.example.scoreregisterapp.data.repository.UserRepository
 import com.example.scoreregisterapp.domain.entities.Course
@@ -32,7 +34,7 @@ class QrGenerateActivity : AppCompatActivity() {
     private val TAG = "QrGenerateActivity"
 
     private var qrCodeImageView: ImageView? = null
-    private var userRepository = UserRepository.getInstance()
+    private var userRepository = UserRepository(getRestProvider()).getInstance()
 
 
     private var currentLesson: Lesson? = null

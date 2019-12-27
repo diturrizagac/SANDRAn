@@ -2,44 +2,37 @@ package com.example.scoreregisterapp.data.repository
 
 import android.util.Log
 import com.example.scoreregisterapp.data.RestProvider
-import com.example.scoreregisterapp.data.RestService
 import com.example.scoreregisterapp.data.RestService.APP_ID
 import com.example.scoreregisterapp.data.RestService.REST_API_KEY
+import com.example.scoreregisterapp.data.RestService.getRestProvider
 import com.example.scoreregisterapp.data.callback.OnPostItemCallback
 import com.example.scoreregisterapp.domain.entities.Attendance
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class AttendanceRepository {
+class AttendanceRepository: Repository<AttendanceRepository> {
+
     private var restProvider: RestProvider? = null
     private val TAG = "AttendanceRepository"
 
-    constructor(restProvider: RestProvider) {
+    constructor(restProvider: RestProvider?) {
         this.restProvider = restProvider
     }
 
     companion object {
         private var repository: AttendanceRepository? = null
-        @JvmStatic
-        fun getInstance(): AttendanceRepository {
-            if (repository == null) {
-                repository = AttendanceRepository(RestService.getRestProvider())
-            }
-            return repository as AttendanceRepository
+    }
+
+    override fun getInstance(): AttendanceRepository {
+        if (repository == null) {
+            repository = AttendanceRepository(restProvider)
         }
-    }
-
-    fun getAttendanceByUser() {
-
-    }
-
-    private fun getRequestAttendance() {
-
+        return repository as AttendanceRepository
     }
 
     fun postAttendance(attendance: Attendance?, callback: OnPostItemCallback<Attendance>?) {
-        val currentAttendance = RestService.getRestProvider().createAttendance(APP_ID, REST_API_KEY,attendance)
+        val currentAttendance = getRestProvider().createAttendance(APP_ID, REST_API_KEY,attendance)
         Log.i(TAG, "POST---> ${currentAttendance.request().url()}")
         requestPostAttendance(currentAttendance,callback)
     }
@@ -74,5 +67,12 @@ class AttendanceRepository {
 
     }
 
+    fun getAttendanceByUser() {
+
+    }
+
+    private fun getRequestAttendance() {
+
+    }
 
 }

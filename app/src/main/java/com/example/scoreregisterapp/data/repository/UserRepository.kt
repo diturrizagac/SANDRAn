@@ -13,26 +13,25 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class UserRepository : Repository {
+class UserRepository : Repository<UserRepository> {
 
     private var restProvider: RestProvider? = null
     private val TAG = "UserRepository"
 
-    constructor(restProvider: RestProvider) {
+    constructor(restProvider: RestProvider?) {
         this.restProvider = restProvider
     }
 
     companion object {
-        private var repository: UserRepository? = null
-        @JvmStatic
-        fun getInstance(): UserRepository {
-            if (repository == null) {
-                repository = UserRepository(getRestProvider())
-            }
-            return repository as UserRepository
-        }
+            private var repository: UserRepository? = null
     }
 
+    override fun getInstance(): UserRepository {
+        if (repository == null) {
+            repository = UserRepository(restProvider)
+        }
+        return repository as UserRepository
+    }
 
     fun getUser(userId: String?, callback: OnGetItemCallback<User>?) {
         val user = getRestProvider().getUser(APP_ID, REST_API_KEY,userId)

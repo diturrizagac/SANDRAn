@@ -1,4 +1,5 @@
 package com.example.scoreregisterapp.data.repository
 
-interface Repository {
+interface Repository<T> {
+    fun getInstance() : T
 }

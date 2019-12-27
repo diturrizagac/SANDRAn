@@ -11,23 +11,24 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class CourseRepository {
+class CourseRepository: Repository<CourseRepository> {
+
     private var restProvider: RestProvider? = null
     private val TAG = "CourseRepository"
 
-    constructor(restProvider: RestProvider) {
+    constructor(restProvider: RestProvider?) {
         this.restProvider = restProvider
     }
 
     companion object {
         private var repository: CourseRepository? = null
-        @JvmStatic
-        fun getInstance(): CourseRepository {
-            if (repository == null) {
-                repository = CourseRepository(RestService.getRestProvider())
-            }
-            return repository as CourseRepository
+    }
+
+    override fun getInstance(): CourseRepository {
+        if (repository == null) {
+            repository = CourseRepository(restProvider)
         }
+        return repository as CourseRepository
     }
 
     fun getCourse(courseId: String?, size: Int?, callback: OnGetItemCallback<Course>?) {

@@ -14,23 +14,24 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class EnrollmentRepository {
+class EnrollmentRepository: Repository<EnrollmentRepository>{
+
     private var restProvider: RestProvider? = null
     private val TAG = "EnrollmentRepository"
 
-    constructor(restProvider: RestProvider) {
+    companion object {
+        private var repository: EnrollmentRepository? = null
+    }
+
+    constructor(restProvider: RestProvider?) {
         this.restProvider = restProvider
     }
 
-    companion object {
-        private var repository: EnrollmentRepository? = null
-        @JvmStatic
-        fun getInstance(): EnrollmentRepository {
-            if (repository == null) {
-                repository = EnrollmentRepository(RestService.getRestProvider())
-            }
-            return repository as EnrollmentRepository
+    override fun getInstance(): EnrollmentRepository {
+        if (repository == null) {
+            repository = EnrollmentRepository(restProvider)
         }
+        return repository as EnrollmentRepository
     }
 
     fun getUserEnrollment(userId: String?, callback: OnGetItemsCallback<Enrollment>?) {
