@@ -15,6 +15,7 @@ import androidx.appcompat.widget.AppCompatSpinner
 import androidx.recyclerview.widget.RecyclerView
 import com.diturrizaga.easypay.util.NavigationTo
 import com.example.scoreregisterapp.R
+import com.example.scoreregisterapp.data.RestService.getRestProvider
 import com.example.scoreregisterapp.data.callback.OnGetItemCallback
 import com.example.scoreregisterapp.data.callback.OnGetItemsCallback
 import com.example.scoreregisterapp.data.callback.OnPostItemCallback
@@ -35,9 +36,9 @@ class CreateLessonActivity : AppCompatActivity() {
     private val TAG = "CreateLessonActivity"
     private val CLASS = "lesson"
 
-    private val lessonRepository = LessonRepository.getInstance()
-    private val enrollmentRepository = EnrollmentRepository.getInstance()
-    private val courseRepository = CourseRepository.getInstance()
+    private val lessonRepository = LessonRepository(getRestProvider()).getInstance()
+    private val enrollmentRepository = EnrollmentRepository(getRestProvider()).getInstance()
+    private val courseRepository = CourseRepository(getRestProvider()).getInstance()
 
     private var isFinishedLoad: Boolean? = false
 

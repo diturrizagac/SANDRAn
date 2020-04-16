@@ -37,7 +37,7 @@ class QrResultActivity : AppCompatActivity() {
     private var userRepository = UserRepository(getRestProvider()).getInstance()
     private var valueScanned: String? = null
 
-    private val attendanceRepository = AttendanceRepository.getInstance()
+    private val attendanceRepository = AttendanceRepository(getRestProvider()).getInstance()
     private var currentAttendance: Attendance? = null
     private var currentAttendanceId: String? = null
 

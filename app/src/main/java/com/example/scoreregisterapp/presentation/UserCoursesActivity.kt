@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.scoreregisterapp.R
+import com.example.scoreregisterapp.data.RestService.getRestProvider
 import com.example.scoreregisterapp.data.callback.OnGetItemCallback
 import com.example.scoreregisterapp.data.callback.OnGetItemsCallback
 import com.example.scoreregisterapp.data.repository.CourseRepository
@@ -37,8 +38,8 @@ class UserCoursesActivity : AppCompatActivity() {
     private var currentCourse: Course? = null
     private var coursesList = ArrayList<Course>()
 
-    private var enrollmentRepository = EnrollmentRepository.getInstance()
-    private var courseRepository = CourseRepository.getInstance()
+    private var enrollmentRepository = EnrollmentRepository(getRestProvider()).getInstance()
+    private var courseRepository = CourseRepository(getRestProvider()).getInstance()
 
 
     private var images = arrayOf(
