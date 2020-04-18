@@ -15,12 +15,7 @@ import retrofit2.Response
 
 class UserRepository : Repository<UserRepository> {
 
-    private var restProvider: RestProvider? = null
     private val TAG = "UserRepository"
-
-    constructor(restProvider: RestProvider?) {
-        this.restProvider = restProvider
-    }
 
     companion object {
             private var repository: UserRepository? = null
@@ -28,7 +23,7 @@ class UserRepository : Repository<UserRepository> {
 
     override fun getInstance(): UserRepository {
         if (repository == null) {
-            repository = UserRepository(restProvider)
+            repository = UserRepository()
         }
         return repository as UserRepository
     }

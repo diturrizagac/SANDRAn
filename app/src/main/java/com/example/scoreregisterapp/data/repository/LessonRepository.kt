@@ -13,20 +13,15 @@ import retrofit2.Response
 
 class LessonRepository : Repository<LessonRepository>{
 
-    private var restProvider: RestProvider? = null
     private val TAG = "LessonRepository"
 
     companion object {
         private var repository: LessonRepository? = null
     }
 
-    constructor(restProvider: RestProvider?) {
-        this.restProvider = restProvider
-    }
-
     override fun getInstance(): LessonRepository {
         if (repository == null) {
-            repository = LessonRepository(restProvider)
+            repository = LessonRepository()
         }
         return repository as LessonRepository
     }

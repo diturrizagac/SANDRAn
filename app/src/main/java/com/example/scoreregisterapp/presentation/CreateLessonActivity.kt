@@ -38,7 +38,8 @@ class CreateLessonActivity : AppCompatActivity() {
 
     private val lessonRepository = LessonRepository(getRestProvider()).getInstance()
     private val enrollmentRepository = EnrollmentRepository(getRestProvider()).getInstance()
-    private val courseRepository = CourseRepository(getRestProvider()).getInstance()
+    //private val courseRepository = CourseRepository(getRestProvider()).getInstance()
+    private val courseRepository = CourseRepository().getInstance()
 
     private var isFinishedLoad: Boolean? = false
 

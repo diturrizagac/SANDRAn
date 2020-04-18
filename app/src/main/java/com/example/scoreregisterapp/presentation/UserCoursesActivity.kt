@@ -39,7 +39,8 @@ class UserCoursesActivity : AppCompatActivity() {
     private var coursesList = ArrayList<Course>()
 
     private var enrollmentRepository = EnrollmentRepository(getRestProvider()).getInstance()
-    private var courseRepository = CourseRepository(getRestProvider()).getInstance()
+    private var courseRepository = CourseRepository().getInstance()
+    //private var courseRepository = CourseRepository(getRestProvider()).getInstance()
 
 
     private var images = arrayOf(

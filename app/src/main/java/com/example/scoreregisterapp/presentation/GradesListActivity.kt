@@ -26,7 +26,8 @@ class GradesListActivity : AppCompatActivity() {
 
     private val TAG = "GradesListActivity"
 
-    private var courseRepository = CourseRepository(getRestProvider()).getInstance()
+    //private var courseRepository = CourseRepository(getRestProvider()).getInstance()
+    private var courseRepository = CourseRepository().getInstance()
     //private var userRepository = UserRepository.getInstance()
     private var userRepository = UserRepository(getRestProvider()).getInstance()
 
