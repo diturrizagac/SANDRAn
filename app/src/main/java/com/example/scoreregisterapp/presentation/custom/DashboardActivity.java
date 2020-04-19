@@ -81,7 +81,7 @@ public class DashboardActivity extends AppCompatActivity {
 
         ImageView imgProfile=(ImageView)findViewById(R.id.profile_image);
         Glide.with(mContext)
-                .load(R.drawable.jack_sparrow)
+                .load(R.drawable.cellphone_android)
                 .apply(RequestOptions.circleCropTransform())
                 .into(imgProfile);
 

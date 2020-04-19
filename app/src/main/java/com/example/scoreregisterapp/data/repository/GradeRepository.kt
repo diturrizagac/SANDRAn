@@ -1,22 +1,15 @@
 package com.example.scoreregisterapp.data.repository
 
-import com.example.scoreregisterapp.data.RestProvider
-import com.example.scoreregisterapp.data.RestService
+class GradeRepository {
 
-class GradeRepository: Repository<GradeRepository> {
-
-    private val TAG = "GradeRepository"
-
+    private object HOLDER {
+        val INSTANCE = GradeRepository()
+    }
     companion object {
-        private var repository: GradeRepository? = null
+        private val TAG = "GradeRepository"
+        val instance: GradeRepository by lazy { HOLDER.INSTANCE }
     }
 
-    override fun getInstance(): GradeRepository {
-        if (repository == null) {
-            repository = GradeRepository()
-        }
-        return repository as GradeRepository
-    }
 
 
 }

@@ -7,6 +7,7 @@
     <string name="login_name_hint">Name</string>
     <string name="login_mobile_number_hint">Mobile Number</string>
     <string name="login">Login</string>
+    <string name="signin">Sign In</string>
     <string name="diturrizaga">/@diturrizaga</string>
 
     <string name="app_needs_your_camera_permission_in_order_to_scan_qr_code">App needs your camera permission in order to scan qr code.</string>

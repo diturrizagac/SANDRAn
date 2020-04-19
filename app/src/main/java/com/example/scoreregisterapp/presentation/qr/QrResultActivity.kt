@@ -10,7 +10,6 @@ import com.backendless.Backendless
 import com.backendless.async.callback.AsyncCallback
 import com.backendless.exceptions.BackendlessFault
 import com.example.scoreregisterapp.R
-import com.example.scoreregisterapp.data.RestService.getRestProvider
 import com.example.scoreregisterapp.data.callback.OnGetItemCallback
 import com.example.scoreregisterapp.data.callback.OnPostItemCallback
 import com.example.scoreregisterapp.data.repository.AttendanceRepository
@@ -34,10 +33,10 @@ class QrResultActivity : AppCompatActivity() {
 
     private var currentUser: User? = null
     private var userId: String? = null
-    private var userRepository = UserRepository(getRestProvider()).getInstance()
+    private var userRepository = UserRepository
     private var valueScanned: String? = null
 
-    private val attendanceRepository = AttendanceRepository(getRestProvider()).getInstance()
+    private val attendanceRepository = AttendanceRepository
     private var currentAttendance: Attendance? = null
     private var currentAttendanceId: String? = null
 

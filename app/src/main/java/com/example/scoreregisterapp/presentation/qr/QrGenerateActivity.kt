@@ -34,8 +34,7 @@ class QrGenerateActivity : AppCompatActivity() {
     private val TAG = "QrGenerateActivity"
 
     private var qrCodeImageView: ImageView? = null
-    private var userRepository = UserRepository(getRestProvider()).getInstance()
-
+    private var userRepository = UserRepository
 
     private var currentLesson: Lesson? = null
     private var currentCourse: Course? = null

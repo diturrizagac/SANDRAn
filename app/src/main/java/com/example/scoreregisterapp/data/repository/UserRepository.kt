@@ -1,7 +1,6 @@
 package com.example.scoreregisterapp.data.repository
 
 import android.util.Log
-import com.example.scoreregisterapp.data.RestProvider
 import com.example.scoreregisterapp.data.RestService.APP_ID
 import com.example.scoreregisterapp.data.RestService.REST_API_KEY
 import com.example.scoreregisterapp.data.RestService.getRestProvider
@@ -13,20 +12,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class UserRepository : Repository<UserRepository> {
+object UserRepository {
 
     private val TAG = "UserRepository"
-
-    companion object {
-            private var repository: UserRepository? = null
-    }
-
-    override fun getInstance(): UserRepository {
-        if (repository == null) {
-            repository = UserRepository()
-        }
-        return repository as UserRepository
-    }
 
     fun getUser(userId: String?, callback: OnGetItemCallback<User>?) {
         val user = getRestProvider().getUser(APP_ID, REST_API_KEY,userId)

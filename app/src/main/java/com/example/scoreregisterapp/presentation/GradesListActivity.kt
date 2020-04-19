@@ -6,19 +6,14 @@ import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.scoreregisterapp.R
-import com.example.scoreregisterapp.data.RestService.getRestProvider
 import com.example.scoreregisterapp.data.callback.OnGetItemCallback
 import com.example.scoreregisterapp.data.callback.OnGetItemsCallback
 import com.example.scoreregisterapp.data.repository.CourseRepository
-import com.example.scoreregisterapp.data.repository.EnrollmentRepository
-import com.example.scoreregisterapp.data.repository.GradeRepository
 import com.example.scoreregisterapp.data.repository.UserRepository
 import com.example.scoreregisterapp.domain.entities.Course
-import com.example.scoreregisterapp.domain.entities.Enrollment
 import com.example.scoreregisterapp.domain.entities.Grades
 import com.example.scoreregisterapp.domain.entities.User
 import com.example.scoreregisterapp.domain.model.GradeData
-import com.example.scoreregisterapp.presentation.adapter.CoursesAdapter
 import com.example.scoreregisterapp.presentation.adapter.GradesAdapter
 import java.util.ArrayList
 
@@ -26,10 +21,8 @@ class GradesListActivity : AppCompatActivity() {
 
     private val TAG = "GradesListActivity"
 
-    //private var courseRepository = CourseRepository(getRestProvider()).getInstance()
-    private var courseRepository = CourseRepository().getInstance()
-    //private var userRepository = UserRepository.getInstance()
-    private var userRepository = UserRepository(getRestProvider()).getInstance()
+    private var courseRepository = CourseRepository
+    private var userRepository = UserRepository
 
     private var isFinishedLoad: Boolean? = false
 

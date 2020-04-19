@@ -38,8 +38,8 @@ class UserCoursesActivity : AppCompatActivity() {
     private var currentCourse: Course? = null
     private var coursesList = ArrayList<Course>()
 
-    private var enrollmentRepository = EnrollmentRepository(getRestProvider()).getInstance()
-    private var courseRepository = CourseRepository().getInstance()
+    private var enrollmentRepository = EnrollmentRepository.instance
+    private var courseRepository = CourseRepository
     //private var courseRepository = CourseRepository(getRestProvider()).getInstance()
 
 

@@ -36,10 +36,9 @@ class CreateLessonActivity : AppCompatActivity() {
     private val TAG = "CreateLessonActivity"
     private val CLASS = "lesson"
 
-    private val lessonRepository = LessonRepository(getRestProvider()).getInstance()
-    private val enrollmentRepository = EnrollmentRepository(getRestProvider()).getInstance()
-    //private val courseRepository = CourseRepository(getRestProvider()).getInstance()
-    private val courseRepository = CourseRepository().getInstance()
+    private val lessonRepository = LessonRepository.instance
+    private val enrollmentRepository = EnrollmentRepository.instance
+    private val courseRepository = CourseRepository
 
     private var isFinishedLoad: Boolean? = false
 
@@ -62,7 +61,6 @@ class CreateLessonActivity : AppCompatActivity() {
 
     private var teacherId: String? = null
     private var currentTeacher: User? = null
-
     private var currentLesson: Lesson? = null
 
 

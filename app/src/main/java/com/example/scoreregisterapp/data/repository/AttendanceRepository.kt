@@ -1,7 +1,6 @@
 package com.example.scoreregisterapp.data.repository
 
 import android.util.Log
-import com.example.scoreregisterapp.data.RestProvider
 import com.example.scoreregisterapp.data.RestService.APP_ID
 import com.example.scoreregisterapp.data.RestService.REST_API_KEY
 import com.example.scoreregisterapp.data.RestService.getRestProvider
@@ -11,20 +10,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class AttendanceRepository: Repository<AttendanceRepository> {
+object AttendanceRepository {
 
     private val TAG = "AttendanceRepository"
-
-    companion object {
-        private var repository: AttendanceRepository? = null
-    }
-
-    override fun getInstance(): AttendanceRepository {
-        if (repository == null) {
-            repository = AttendanceRepository()
-        }
-        return repository as AttendanceRepository
-    }
 
     fun postAttendance(attendance: Attendance?, callback: OnPostItemCallback<Attendance>?) {
         val currentAttendance = getRestProvider().createAttendance(APP_ID, REST_API_KEY,attendance)
