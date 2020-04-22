@@ -1,10 +1,10 @@
 package com.example.scoreregisterapp.presentation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.backendless.Backendless
 import com.backendless.BackendlessUser
 import com.backendless.async.callback.AsyncCallback
@@ -14,6 +14,9 @@ import com.example.scoreregisterapp.R
 import com.example.scoreregisterapp.data.RestService.APP_ID
 import com.example.scoreregisterapp.data.RestService.REST_API_KEY
 import com.example.scoreregisterapp.domain.entities.User
+import com.example.scoreregisterapp.presentation.ViewEventHandler.hideLoadingScreen
+import com.example.scoreregisterapp.presentation.ViewEventHandler.setEventHandlerContext
+import com.example.scoreregisterapp.presentation.ViewEventHandler.showLoadingScreen
 
 class AuthenticationActivity : AppCompatActivity() {
 
@@ -26,8 +29,9 @@ class AuthenticationActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_authentication)
         Backendless.initApp(this, APP_ID, REST_API_KEY)
+        setContentView(R.layout.activity_authentication)
+        setEventHandlerContext(this)
         initializeUI()
         setListeners()
     }
@@ -40,6 +44,7 @@ class AuthenticationActivity : AppCompatActivity() {
 
     private fun setListeners(){
         loginButton?.setOnClickListener {
+            showLoadingScreen()
             setUpAccount()
         }
     }
@@ -50,20 +55,15 @@ class AuthenticationActivity : AppCompatActivity() {
             passwordEditText?.text.toString(),
             object : AsyncCallback<BackendlessUser> {
                 override fun handleFault(fault: BackendlessFault?) {
+                    hideLoadingScreen()
                     Toast.makeText(applicationContext,fault?.message, Toast.LENGTH_LONG).show()
                 }
 
                 override fun handleResponse(response: BackendlessUser?) {
                     response?.let { parseToUser(it) }
-                    Toast.makeText(applicationContext,"${currentUser.firstName} has been logged in successfully", Toast.LENGTH_LONG).show()
-                    /*val activity = if(currentUser.userRole == Role.student.name){
-                        StudentHomeActivity::class.java
-                    } else {
-                        TeacherHomeActivity::class.java
-                    }*/
-                    //goTo(activity,this@AuthenticationActivity, currentUser.objectId, currentUser.userRole)
+                    hideLoadingScreen()
                     goTo(UserHomeActivity::class.java,this@AuthenticationActivity, currentUser)
-
+                    Toast.makeText(applicationContext,"${currentUser.firstName} has been logged in successfully", Toast.LENGTH_LONG).show()
                     loginButton!!.isEnabled = true
                 }
 

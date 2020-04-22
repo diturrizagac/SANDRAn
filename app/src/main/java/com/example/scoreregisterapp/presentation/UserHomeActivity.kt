@@ -18,7 +18,6 @@ import com.example.scoreregisterapp.domain.model.Role
 import com.example.scoreregisterapp.presentation.adapter.HomeAdapter
 import com.example.scoreregisterapp.presentation.qr.QrGenerateActivity
 import com.example.scoreregisterapp.presentation.qr.QrScanActivity
-import org.w3c.dom.Text
 
 import java.util.ArrayList
 
@@ -42,9 +41,8 @@ class UserHomeActivity : AppCompatActivity() {
     private var adapterListener = object : View.OnClickListener {
         override fun onClick(view: View?) {
             val viewHolder = view!!.tag as RecyclerView.ViewHolder
-            val position = viewHolder.adapterPosition
 
-            when (position) {
+            when (viewHolder.adapterPosition) {
                 0 -> goTo(UserProfileActivity::class.java, this@UserHomeActivity, currentUser)
                 1 -> goTo(QrScanActivity::class.java, this@UserHomeActivity, currentUser)
                 2 -> goTo(UserCoursesActivity::class.java, this@UserHomeActivity, currentUser)
@@ -61,12 +59,13 @@ class UserHomeActivity : AppCompatActivity() {
         initializeUI()
         setUpRecyclerView()
         showOptions()
+        setUserInfo()
         setListener()
     }
 
     private fun initializeUI() {
         profileImage = findViewById(R.id.user_image)
-        profileUsername = findViewById(R.id.user_image)
+        profileUsername = findViewById(R.id.user_name)
         profileUserInformation = findViewById(R.id.user_information)
         infoButton = findViewById(R.id.info_button)
         showQrButton = findViewById(R.id.showQrButton)
@@ -115,6 +114,17 @@ class UserHomeActivity : AppCompatActivity() {
         } else {
             GradesListActivity::class.java
         }
+    }
+
+    private fun setUserInfo() {
+        profileImage
+        profileUsername?.text = nameConcatenation(currentUser?.firstName, currentUser?.lastName)
+        profileUserInformation?.text = currentUser?.userRole
+
+    }
+
+    private fun nameConcatenation(firstName: String?, lastName: String?): String {
+        return "$firstName $lastName"
     }
 
     private val userImages = arrayOf(

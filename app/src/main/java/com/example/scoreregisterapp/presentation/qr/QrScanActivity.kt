@@ -94,7 +94,7 @@ class QrScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
 
     private fun setScannerProperties() {
         qrCodeScanner!!.setFormats(listOf(BarcodeFormat.QR_CODE))
-        qrCodeScanner!!.setAutoFocus(true)
+        //qrCodeScanner!!.setAutoFocus(true)
         qrCodeScanner!!.setLaserColor(R.color.colorAccent)
         qrCodeScanner!!.setMaskColor(R.color.colorAccent)
         if (Build.MANUFACTURER.equals(HUAWEI, ignoreCase = true))
