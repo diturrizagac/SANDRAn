@@ -11,5 +11,8 @@
     <string name="diturrizaga">/@diturrizaga</string>
 
     <string name="app_needs_your_camera_permission_in_order_to_scan_qr_code">App needs your camera permission in order to scan qr code.</string>
+    <string name="done">DONE</string>
+    <string name="sign_off">SIGN OFF</string>
+    <string name="my_title">My Title</string>
 
 </resources>

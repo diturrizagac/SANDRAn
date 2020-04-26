@@ -25,7 +25,7 @@
                 app:expandedTitleMarginStart="48dp"
                 app:expandedTitleTextAppearance="@style/TransparentText"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                app:toolbarId="@+id/toolbar">
+                >
 
             <LinearLayout
                     android:id="@+id/linearLayout"

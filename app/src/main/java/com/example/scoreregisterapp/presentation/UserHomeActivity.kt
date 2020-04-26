@@ -1,12 +1,15 @@
 package com.example.scoreregisterapp.presentation
 
+import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +18,10 @@ import com.example.scoreregisterapp.R
 import com.example.scoreregisterapp.domain.entities.User
 import com.example.scoreregisterapp.domain.model.HomeData
 import com.example.scoreregisterapp.domain.model.Role
+import com.example.scoreregisterapp.presentation.ViewEventHandler.addContextTitle
+import com.example.scoreregisterapp.presentation.ViewEventHandler.addLogOutButton
+import com.example.scoreregisterapp.presentation.ViewEventHandler.addToolbarToContext
+import com.example.scoreregisterapp.presentation.ViewEventHandler.setEventHandlerContext
 import com.example.scoreregisterapp.presentation.adapter.HomeAdapter
 import com.example.scoreregisterapp.presentation.qr.QrGenerateActivity
 import com.example.scoreregisterapp.presentation.qr.QrScanActivity
@@ -25,8 +32,15 @@ import java.util.ArrayList
 class UserHomeActivity : AppCompatActivity() {
 
     private val TAG = "UserHomeActivity"
+    private val FEATURE_TITLE = "HOME"
     private var currentUser: User? = null
     private var userRole: String? = null
+
+    private var rightActionButton: MenuItem? = null
+
+    private var titleToolbar: TextView? = null
+    private var rightButton: Button? = null
+    private var leftButton: Button? = null
 
     private var showQrButton: Button? = null
     private var profileImage: ImageView? = null
@@ -55,6 +69,8 @@ class UserHomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_home)
+        setEventHandlerContext(this)
+        setNavigationToolbar()
         retrieveData()
         initializeUI()
         setUpRecyclerView()
@@ -117,7 +133,7 @@ class UserHomeActivity : AppCompatActivity() {
     }
 
     private fun setUserInfo() {
-        profileImage
+        //profileImage
         profileUsername?.text = nameConcatenation(currentUser?.firstName, currentUser?.lastName)
         profileUserInformation?.text = currentUser?.userRole
 
@@ -125,6 +141,19 @@ class UserHomeActivity : AppCompatActivity() {
 
     private fun nameConcatenation(firstName: String?, lastName: String?): String {
         return "$firstName $lastName"
+    }
+
+    private fun setNavigationToolbar() {
+        val toolbarHome = findViewById<Toolbar>(R.id.toolbar_home)
+        addToolbarToContext(toolbarHome)
+        addLogOutButton()
+
+
+        addContextTitle(FEATURE_TITLE)
+        setSupportActionBar(toolbarHome)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+
+
     }
 
     private val userImages = arrayOf(

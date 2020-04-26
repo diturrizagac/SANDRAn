@@ -41,7 +41,7 @@
                 android:id="@+id/barcodeBackImageView"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
-                android:background="@drawable/back_arrow_tale_vector_icon"
+                android:background="@drawable/back_arrow_vector_icon"
                 android:clickable="true"
                 android:contentDescription="@null"
                 android:focusable="true" />

@@ -24,9 +24,11 @@ class CustomProgressBarHandler {
         mProgressBar?.isIndeterminate = true
 
         val lParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT)
-        val linearLayout: LinearLayout = LinearLayout(context)
+        val linearLayout = LinearLayout(context)
+
         linearLayout.gravity = Gravity.CENTER
         linearLayout.addView(mProgressBar)
+
         currentLayout.addView(linearLayout, lParams)
 
         hideLoadingScreen()
