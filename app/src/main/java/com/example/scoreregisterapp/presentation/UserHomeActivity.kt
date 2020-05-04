@@ -1,9 +1,7 @@
 package com.example.scoreregisterapp.presentation
 
-import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
-import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
@@ -32,15 +30,9 @@ import java.util.ArrayList
 class UserHomeActivity : AppCompatActivity() {
 
     private val TAG = "UserHomeActivity"
-    private val FEATURE_TITLE = "HOME"
+    private val kUserHomeTitle = "HOME"
     private var currentUser: User? = null
     private var userRole: String? = null
-
-    private var rightActionButton: MenuItem? = null
-
-    private var titleToolbar: TextView? = null
-    private var rightButton: Button? = null
-    private var leftButton: Button? = null
 
     private var showQrButton: Button? = null
     private var profileImage: ImageView? = null
@@ -147,13 +139,9 @@ class UserHomeActivity : AppCompatActivity() {
         val toolbarHome = findViewById<Toolbar>(R.id.toolbar_home)
         addToolbarToContext(toolbarHome)
         addLogOutButton()
-
-
-        addContextTitle(FEATURE_TITLE)
+        addContextTitle(kUserHomeTitle)
         setSupportActionBar(toolbarHome)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-
-
     }
 
     private val userImages = arrayOf(

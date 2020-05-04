@@ -45,20 +45,15 @@ class AuthenticationActivity : AppCompatActivity() {
     private fun setListeners(){
         loginButton?.setOnClickListener {
             showLoadingScreen()
-            setUpAccount()
+            getCurrentAccountFromBLService()
         }
     }
 
-    private fun setUpAccount() {
+    private fun getCurrentAccountFromBLService() {
         Backendless.UserService.login(
             usernameEditText?.text.toString(),
             passwordEditText?.text.toString(),
             object : AsyncCallback<BackendlessUser> {
-                override fun handleFault(fault: BackendlessFault?) {
-                    hideLoadingScreen()
-                    Toast.makeText(applicationContext,fault?.message, Toast.LENGTH_LONG).show()
-                }
-
                 override fun handleResponse(response: BackendlessUser?) {
                     response?.let { parseToUser(it) }
                     hideLoadingScreen()
@@ -67,6 +62,10 @@ class AuthenticationActivity : AppCompatActivity() {
                     loginButton!!.isEnabled = true
                 }
 
+                override fun handleFault(fault: BackendlessFault?) {
+                    hideLoadingScreen()
+                    Toast.makeText(applicationContext,fault?.message, Toast.LENGTH_LONG).show()
+                }
             }
         )
     }

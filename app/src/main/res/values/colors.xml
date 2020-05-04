@@ -8,12 +8,14 @@
     <color name="whiteTextColor">#fff</color>
     <color name="primaryTextColor">#2661FA</color>
     <color name="loginBkColor">#f0f0f0</color>
-    <color name="lightBlueMainColor">#408bff</color>
+    <color name="sanMarcosMainColor">#83160C</color>
+    <color name="lightBlueMainColorHolder">#408bff</color>
+    <color name="redSMMainColor">#F44336</color>
     <color name="redMainColor">#F73A36</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
 
-    <!--colros for card-->
+    <!--colors for card-->
     <color name="whiteCardColor">#fff</color>
 
     <!--colors for profile-->

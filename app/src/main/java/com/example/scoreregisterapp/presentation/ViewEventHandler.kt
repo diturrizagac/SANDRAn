@@ -1,7 +1,6 @@
 package com.example.scoreregisterapp.presentation
 
 import android.content.Context
-import android.graphics.Typeface
 import androidx.appcompat.widget.Toolbar
 import com.example.scoreregisterapp.presentation.custom.CustomProgressBarHandler
 import com.example.scoreregisterapp.presentation.custom.CustomToolbarHandler

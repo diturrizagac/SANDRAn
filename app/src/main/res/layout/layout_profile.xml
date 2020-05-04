@@ -35,6 +35,7 @@
                     style="@style/profileDetailsTextMain" />
 
             <TextView
+                    android:id="@+id/user_profile_fullname"
                     android:text="Diego Iturrizaga"
                     android:layout_toRightOf="@id/nameImageView"
                     style="@style/profileDetailsMiniText" />
@@ -54,6 +55,7 @@
                     style="@style/profileDetailsTextMain"/>
 
             <TextView
+                    android:id="@+id/user_profile_mobile"
                     android:text="+511921884389"
                     android:layout_toRightOf="@id/mobileImageView"
                     style="@style/profileDetailsMiniText" />
@@ -73,6 +75,7 @@
                     style="@style/profileDetailsTextMain" />
 
             <TextView
+                    android:id="@+id/user_profile_institutional_email"
                     android:text="diturrizaga@gmail.com"
                     android:layout_toRightOf="@id/emailImageView"
                     style="@style/profileDetailsMiniText" />
@@ -92,6 +95,7 @@
                     style="@style/profileDetailsTextMain" />
 
             <TextView
+                    android:id="@+id/user_profile_address"
                     android:text="Calle 6 Mz G Lt 34, Ate"
                     android:layout_toRightOf="@id/addressImageView"
                     style="@style/profileDetailsMiniText" />
@@ -112,6 +116,7 @@
                     android:layout_toEndOf="@id/dobImageView" />
 
             <TextView
+                    android:id="@+id/user_profile_birthday"
                     android:text="19-12-1990"
                     android:layout_toRightOf="@id/dobImageView"
                     style="@style/profileDetailsMiniText"
@@ -119,7 +124,7 @@
 
         </RelativeLayout>
 
-        <View style="@style/proifleDetailsView" />
+        <!--View style="@style/profileDetailsView" /-->
 
     </LinearLayout>
 

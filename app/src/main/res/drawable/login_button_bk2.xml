@@ -5,9 +5,9 @@
     <gradient
             android:angle="45"
 
-            android:startColor="@color/lightBlueMainColor"
-            android:centerColor="#03A9F4"
-            android:endColor="@color/lightBlueMainColor"
+            android:startColor="@color/sanMarcosMainColor"
+            android:centerColor="#363232"
+            android:endColor="@color/sanMarcosMainColor"
             android:type="linear" />
     <size
             android:width="182dp"

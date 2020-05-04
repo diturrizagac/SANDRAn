@@ -3,8 +3,8 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/lightBlueMainColor</item>
-        <item name="colorPrimaryDark">@color/primaryTextColor</item>
+        <item name="colorPrimary">@color/sanMarcosMainColor</item>
+        <item name="colorPrimaryDark">@color/sanMarcosMainColor</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColor">@color/whiteTextColor</item>
 
@@ -40,7 +40,7 @@
     </style>
 
     <style name="loginHeader">
-        <item name="android:textColor">@color/lightBlueMainColor</item>
+        <item name="android:textColor">@color/sanMarcosMainColor</item>
         <item name="android:textSize">@dimen/headerTextSize</item>
         <item name="android:textStyle">bold</item>
     </style>

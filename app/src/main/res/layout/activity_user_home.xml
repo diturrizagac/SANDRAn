@@ -15,7 +15,7 @@
                 android:id="@+id/toolbar_home"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/lightBlueMainColor"
+                android:background="@color/sanMarcosMainColor"
                 android:paddingEnd="10dp"
                 android:paddingStart="10dp"/>
 
@@ -82,7 +82,7 @@
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/lightBlueMainColor"
+                    android:background="@color/sanMarcosMainColor"
                     android:fontFamily="@font/nunito_black"
                     android:gravity="center"
                     android:padding="13dp"
